@@ -1,13 +1,12 @@
 INSERT INTO TO_DO_DOMAIN (list_Name) 
 VALUES 
-('To Do'),
+('Helping'),
 ('Shopping'),
 ('Work'),
-('Sport'),
-('Shopping'),
-('House Items'),
 ('Work'),
-('Hobbies');
+('Shopping'),
+('House Items');
+
 
 
 INSERT INTO TASK_DOMAIN (name, category, rank, completed, my_To_Do_id) 
@@ -16,5 +15,5 @@ VALUES
 ('Football', 'Sport', 3, true,2),
 ('Buy Phone', 'Shopping', 2, false,3),
 ('Clean', 'To Do', 3, true,4),
-('Run', 'Work', 2, false,5),
-('Finish Report', 'Hobbies', 3, true,6);
+('Run', 'Health', 2, false,5),
+('Finish Report', 'Work', 3, true,6);
