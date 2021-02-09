@@ -23,7 +23,7 @@ import com.qa.persistence.dto.TaskDTO;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Sql(scripts = { "classpath:scheme-test.sql",
+@Sql(scripts = { "classpath:schema-test.sql",
 		"classpath:data-test.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles(profiles = "test")
 public class TaskControllerIntegrationTest {
@@ -96,17 +96,36 @@ public class TaskControllerIntegrationTest {
 	//updating task test
 	@Test
 	public void update() throws Exception {
+		
+		
 
 	}
 
 	//delete task test successful
 	@Test
 	public void delete() throws Exception {
+		
+        // this sets up the request
+        // we are going to delete ID 2
+        MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE,
+                "http://localhost:8080/task/delete/" + 2);
+
+        // CHECK STATUS THAT YOU GET
+        ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
+
+        // PERFORM THE ABOVE
+        this.mock.perform(mockRequest).andExpect(matchStatus);
 
 	}
 	//delete task test exception
 	@Test
 	public void deleteInternalError() throws Exception {
+
+            MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE,
+                    "http://localhost:8080/task/delete/" + 5);
+
+            ResultMatcher nonMatch = MockMvcResultMatchers.status().isInternalServerError();
+            this.mock.perform(mockRequest).andExpect(nonMatch);
 
 	}
 

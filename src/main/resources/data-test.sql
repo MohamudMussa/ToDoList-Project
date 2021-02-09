@@ -1,4 +1,5 @@
-INSERT INTO TO_DO_DOMAIN (list_Name) VALUES 
+INSERT INTO TO_DO_DOMAIN (list_Name) 
+VALUES 
 ('Helping'),
 ('Shopping'),
 ('Work'),
@@ -9,7 +10,8 @@ INSERT INTO TO_DO_DOMAIN (list_Name) VALUES
 ('Hobbies);
 
 
-INSERT INTO TASK_DOMAIN (name, category, rank, completed, my_To_Do_id) VALUES 
+INSERT INTO TASK_DOMAIN (name, category, rank, completed, my_To_Do_id) 
+VALUES 
 ('Buy Banana', 'Shopping', 2, false,1),
 ('Football', 'Sport', 3, true,2),
 ('Buy Phone', 'Shopping', 2, false,3),

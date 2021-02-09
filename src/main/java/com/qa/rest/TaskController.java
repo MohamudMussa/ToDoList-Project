@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.persistence.domain.TaskDomain;
-import com.qa.persistence.domain.ToDoDomain;
 import com.qa.persistence.dto.TaskDTO;
-import com.qa.persistence.dto.ToDoDTO;
 import com.qa.services.TaskService;
 
-// will be http://localhost:8080/TASK/create
+// will be http://localhost:8080/task/create
 @RestController
 @RequestMapping("/task")
 public class TaskController {
