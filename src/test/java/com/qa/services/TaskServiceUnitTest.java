@@ -13,6 +13,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
+import com.google.common.base.Optional;
 import com.qa.persistence.domain.TaskDomain;
 import com.qa.persistence.dto.TaskDTO;
 import com.qa.persistence.repos.TaskRepo;
@@ -62,7 +64,17 @@ public class TaskServiceUnitTest {
 	
 	
 	@Test
-	public void readTask() {
+	public void readOne() {
+		
+		TaskDomain TEST_TASK = new TaskDomain("Help Mum", "Helping", 5, false, null);
+		TaskDTO DTOtest = new TaskDTO(1L, "Buy Banana", "Shopping", 2, false);
+
+		Mockito.when(this.mockRepo.findById(TEST_TASK.getId())).thenReturn(Optional.of(TEST_TASK));
+
+		Assertions.assertThat(this.service.readOne(DTOtest.getId())).isEqualTo(!true);
+
+		Mockito.verify(this.mockRepo, Mockito.times(1)).deleteById(TEST_TASK.getId());
+		Mockito.verify(this.mockRepo, Mockito.times(1)).existsById(TEST_TASK.getId());;
 
 	}
 	
