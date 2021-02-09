@@ -14,32 +14,35 @@ import com.sun.istack.NotNull;
 
 @Entity
 public class ToDoDomain {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	public Long id;
-
-	private String category;
 	
-	//one to many annotation
-	@OneToMany(mappedBy = "myHouse", fetch = FetchType.EAGER)
-	
-	//this will remove objects along side their foreign key
+	@OneToMany(mappedBy = "myToDo", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	
 	private List<TaskDomain> taskList;
+	
+	private String listName;
 
 	public ToDoDomain() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ToDoDomain(Long id, String category, List<TaskDomain> taskList) {
+	public ToDoDomain(Long id, String listName, List<TaskDomain> taskList) {
 		super();
 		this.id = id;
-		this.category = category;
+		this.listName = listName;
 		this.taskList = taskList;
+	}
+
+	public ToDoDomain(Long id, String listName) {
+		super();
+		this.id = id;
+		this.listName = listName;
+
 	}
 
 	public Long getId() {
@@ -50,24 +53,20 @@ public class ToDoDomain {
 		this.id = id;
 	}
 
-	public String getcategory() {
-		return category;
+	public String getlistName() {
+		return listName;
 	}
 
-	public void setcategory(String category) {
-		this.category = category;
+	public void setlistName(String listName) {
+		this.listName = listName;
 	}
 
-	public List<TaskDomain> getCatList() {
-		return taskList; 
+	public List<TaskDomain> getTaskList() {
+		return taskList;
 	}
 
-	public void setCatList(List<TaskDomain> taskList) {
+	public void setTaskList(List<TaskDomain> taskList) {
 		this.taskList = taskList;
 	}
-	
-	
-	
 
-
-	}
+}
