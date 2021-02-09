@@ -53,15 +53,15 @@ public class ToDoController {
 
 	// POST AN ITEM
 	@PostMapping("/create")
-	public ResponseEntity<ToDoDTO> create(@RequestBody ToDoDomain model) {
-		return new ResponseEntity<ToDoDTO>(this.service.create(model), HttpStatus.CREATED);
+	public ResponseEntity<ToDoDTO> create(@RequestBody ToDoDomain todo) {
+		return new ResponseEntity<ToDoDTO>(this.service.create(todo), HttpStatus.CREATED);
 
 	}
 
 	// UPDATE - PUT
 	@PutMapping("/update/{id}")
-	public ResponseEntity<ToDoDTO> update(@PathVariable("id") Long id, @RequestBody ToDoDomain model) {
-		return  new ResponseEntity<ToDoDTO>(this.service.update(id, model), HttpStatus.ACCEPTED);
+	public ResponseEntity<ToDoDTO> update(@PathVariable("id") Long id, @RequestBody ToDoDomain todo) {
+		return  new ResponseEntity<ToDoDTO>(this.service.update(id, todo), HttpStatus.ACCEPTED);
 	}
 	
 	// DELETE

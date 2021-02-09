@@ -20,14 +20,14 @@ import com.qa.persistence.dto.TaskDTO;
 import com.qa.persistence.dto.ToDoDTO;
 import com.qa.services.TaskService;
 
-// will be http://localhost:8080/item/create
+// will be http://localhost:8080/TASK/create
 @RestController
 @RequestMapping("/task")
 public class TaskController {
 
 	private TaskService service;
 
-	// private ItemServices services;
+	// private TASKServices services;
 
 	// this tells Spring, I need a service, go look for it
 
@@ -52,7 +52,7 @@ public class TaskController {
 		 return ResponseEntity.ok(this.service.readOne(id));
 	}
 
-	// POST AN ITEM
+	// POST AN TASK
 	@PostMapping("/create")
 	public ResponseEntity<TaskDTO> create(@RequestBody TaskDomain task) {
 		return new ResponseEntity<TaskDTO>(this.service.create(task), HttpStatus.CREATED);
