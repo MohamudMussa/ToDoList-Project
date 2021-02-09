@@ -1,4 +1,4 @@
-INSERT INTO TO_DO_DOMAIN (category) VALUES 
+INSERT INTO TO_DO_DOMAIN (list_Name) VALUES 
 ('Helping'),
 ('Shopping'),
 ('Work'),

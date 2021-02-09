@@ -9,7 +9,7 @@ import java.util.List;
 public class ToDoDTO {
 	
 	private Long id;
-	private String category;
+	private String listName;
 //	private List<TaskDTO> taskList;
 	
 	public ToDoDTO() {
@@ -17,10 +17,10 @@ public class ToDoDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ToDoDTO(Long id, String category, List<TaskDTO> taskList) {
+	public ToDoDTO(Long id, String listName, List<TaskDTO> taskList) {
 		super();
 		this.id = id;
-		this.category = category;
+		this.listName = listName;
 //		this.taskList = taskList;
 	}
 
@@ -32,12 +32,12 @@ public class ToDoDTO {
 		this.id = id;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getlistName() {
+		return listName;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setlistName(String listName) {
+		this.listName = listName;
 	}
 
 //	public List<TaskDTO> getTaskList() {

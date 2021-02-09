@@ -20,7 +20,7 @@ public class ToDoDomain {
 	@NotNull
 	public Long id;
 
-	private String category;
+	private String listName;
 
 
 	// one to many annotation
@@ -43,10 +43,10 @@ public class ToDoDomain {
 
 
 
-	public ToDoDomain(Long id, String category, List<TaskDomain> taskList) {
+	public ToDoDomain(Long id, String listName, List<TaskDomain> taskList) {
 		super();
 		this.id = id;
-		this.category = category;
+		this.listName = listName;
 		this.taskList = taskList;
 	}
 
@@ -67,15 +67,15 @@ public class ToDoDomain {
 
 
 
-	public String getCategory() {
-		return category;
+	public String getlistName() {
+		return listName;
 	}
 
 
 
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setlistName(String listName) {
+		this.listName = listName;
 	}
 
 
