@@ -8,7 +8,7 @@ public class TaskDTO {
 	private String category;
 	private Integer rank;
 	private Boolean completed;
-	private ToDoDTO myHouse;
+	private ToDoDTO myToDo;
 
 	public TaskDTO() {
 		super();
@@ -71,13 +71,13 @@ public class TaskDTO {
 	}
 
 
-	public ToDoDTO getMyHouse() {
-		return myHouse;
+	public ToDoDTO getMyToDo() {
+		return myToDo;
 	}
 
 
-	public void setMyHouse(ToDoDTO myHouse) {
-		this.myHouse = myHouse;
+	public void setMyToDo(ToDoDTO myToDo) {
+		this.myToDo = myToDo;
 	}
 
 }

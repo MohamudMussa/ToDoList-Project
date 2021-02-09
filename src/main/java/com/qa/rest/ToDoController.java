@@ -37,7 +37,7 @@ public class ToDoController {
 		this.service = service;
 	}
 
-	// READ ALL HOUSE
+	// READ ALL TODOLISTS
 	@GetMapping("/readAll")
 	public ResponseEntity<List<ToDoDTO>> readAll() {
 		return ResponseEntity.ok(this.service.readAll());
@@ -45,9 +45,9 @@ public class ToDoController {
 	
 	
 
-	// READ ID OF HOUSE
+	// READ ID OF TODOLISTS
 	@GetMapping("/read/{id}")
-	public ResponseEntity<ToDoDTO> readHouse(@PathVariable("id") Long id) {
+	public ResponseEntity<ToDoDTO> readTODOLISTS(@PathVariable("id") Long id) {
 		 return ResponseEntity.ok(this.service.readOne(id));
 	}
 

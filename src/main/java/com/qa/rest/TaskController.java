@@ -18,7 +18,7 @@ import com.qa.services.TaskService;
 
 // will be http://localhost:8080/item/create
 @RestController
-@RequestMapping("/cat")
+@RequestMapping("/task")
 public class TaskController {
 
 	private TaskService service;
@@ -34,7 +34,7 @@ public class TaskController {
 		this.service = service;
 	}
 
-	// READ ALL CATS
+	// READ ALL TASKS
 	@GetMapping("/readAll")
 	public ResponseEntity<List<TaskDTO>> readAll() {
 		return ResponseEntity.ok(this.service.readAll());
@@ -42,22 +42,22 @@ public class TaskController {
 	
 	
 
-	// READ ID OF CAT
+	// READ ID OF task
 	@GetMapping("/read/{id}")
-	public ResponseEntity<TaskDTO> readCat(@PathVariable("id") Long id) {
+	public ResponseEntity<TaskDTO> readtask(@PathVariable("id") Long id) {
 		 return ResponseEntity.ok(this.service.readOne(id));
 	}
 
 	// POST AN ITEM
 	@PostMapping("/create")
-	public ResponseEntity<TaskDTO> create(@RequestBody TaskDomain cat) {
-		return new ResponseEntity<TaskDTO>(this.service.create(cat), HttpStatus.CREATED);
+	public ResponseEntity<TaskDTO> create(@RequestBody TaskDomain task) {
+		return new ResponseEntity<TaskDTO>(this.service.create(task), HttpStatus.CREATED);
 
 	}
 
 	// PUT / UPDATE
 	@PostMapping("/update/{id}")
-	public boolean update(@PathVariable("id") Long id, @RequestBody TaskDomain cat) {
+	public boolean update(@PathVariable("id") Long id, @RequestBody TaskDomain task) {
 		return false;
 
 	}

@@ -23,7 +23,7 @@ public class ToDoDomain {
 	private String category;
 
 	// one to many annotation
-	@OneToMany(mappedBy = "myHouse", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "myToDo", fetch = FetchType.EAGER)
 
 	// this will remove objects along side their foreign key
 	@OnDelete(action = OnDeleteAction.CASCADE)

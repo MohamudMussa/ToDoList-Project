@@ -103,7 +103,7 @@ public class TaskDomain {
 		return myToDo;
 	}
 
-	public void setMyHouse(ToDoDomain myToDo) {
+	public void setMyToDo(ToDoDomain myToDo) {
 		this.myToDo = myToDo;
 	}
 
