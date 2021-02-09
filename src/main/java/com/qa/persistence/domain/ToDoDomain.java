@@ -14,20 +14,22 @@ import com.sun.istack.NotNull;
 
 @Entity
 public class ToDoDomain {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	public Long id;
 
 	private String category;
-	
-	//one to many annotation
-	@OneToMany(mappedBy = "myHouse", fetch = FetchType.EAGER)
-	
-	//this will remove objects along side their foreign key
+
+
+	// one to many annotation
+	@OneToMany(mappedBy = "myToDo", fetch = FetchType.EAGER)
+
+	// this will remove objects along side their foreign key
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	
+
+
 	private List<TaskDomain> taskList;
 
 	public ToDoDomain() {
@@ -58,16 +60,15 @@ public class ToDoDomain {
 		this.category = category;
 	}
 
-	public List<TaskDomain> getCatList() {
-		return taskList; 
+	public List<TaskDomain> getTaskList() {
+		return taskList;
+
 	}
 
-	public void setCatList(List<TaskDomain> taskList) {
+	public void setTaskList(List<TaskDomain> taskList) {
 		this.taskList = taskList;
 	}
-	
-	
-	
 
 
-	}
+}
+
