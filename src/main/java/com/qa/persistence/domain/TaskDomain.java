@@ -7,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import com.sun.istack.NotNull;
 
-
 @Entity
 public class TaskDomain {
 
@@ -27,7 +26,7 @@ public class TaskDomain {
 
 	@NotNull
 	private Boolean completed;
-	
+
 	@ManyToOne
 	private ToDoDomain myToDo;
 
@@ -45,19 +44,17 @@ public class TaskDomain {
 		this.completed = completed;
 		this.myToDo = myToDo;
 
-
 	}
 
 	public TaskDomain(String name, String category, Integer rank, Boolean completed, ToDoDomain myToDo) {
-			super();
-			this.name = name;
-			this.category = category;
-			this.rank = rank;
-			this.completed = completed;
-			this.myToDo = myToDo;
+		super();
+		this.name = name;
+		this.category = category;
+		this.rank = rank;
+		this.completed = completed;
+		this.myToDo = myToDo;
 
-
-		}
+	}
 
 	public Long getId() {
 		return id;
@@ -102,7 +99,6 @@ public class TaskDomain {
 	public ToDoDomain getMyToDo() {
 		return myToDo;
 	}
-
 
 	public void setMyToDo(ToDoDomain myToDo) {
 

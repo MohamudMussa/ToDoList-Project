@@ -8,7 +8,6 @@ public class TaskDTO {
 	private String category;
 	private Integer rank;
 	private Boolean completed;
-	private ToDoDTO myToDo;
 
 	public TaskDTO() {
 		super();
@@ -24,6 +23,7 @@ public class TaskDTO {
 		this.category = category;
 		this.rank = rank;
 		this.completed = completed;
+
 	}
 
 	public Long getId() {
@@ -71,13 +71,5 @@ public class TaskDTO {
 	}
 
 
-	public ToDoDTO getMyToDo() {
-		return myToDo;
-	}
-
-
-	public void setMyToDo(ToDoDTO myToDo) {
-		this.myToDo = myToDo;
-	}
 
 }

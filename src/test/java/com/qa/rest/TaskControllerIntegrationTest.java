@@ -1,5 +1,6 @@
 package com.qa.rest;
 
+
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,7 @@ public class TaskControllerIntegrationTest {
 		
         // EXPECTED INFO BACK WHICH WILL BE JSON
         TaskDTO expectedResults = new TaskDTO(1L, "Buy Banana", "Shopping", 2, false);
+        
 
         // this sets up the request
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
@@ -61,11 +63,11 @@ public class TaskControllerIntegrationTest {
         // CHECK STATUS THAT YOU GET
         ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
 
-        // CHECK IF YOU GET ONE TASK
-        ResultMatcher matchConent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResults));
-
+        // CHECK IF YOU GET ONE task
+        ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResults));
         // PERFORM THE ABOVE
-        this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchConent);
+        this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
+        
 	}
 	
 	
@@ -92,6 +94,7 @@ public class TaskControllerIntegrationTest {
         // PERFORM THE ABOVE
         this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchConent);
 	}
+	
 
 	//updating task test
 	@Test
@@ -122,7 +125,7 @@ public class TaskControllerIntegrationTest {
 	public void deleteInternalError() throws Exception {
 
             MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE,
-                    "http://localhost:8080/task/delete/" + 5);
+                    "http://localhost:8080/task/delete/" + 10);
 
             ResultMatcher nonMatch = MockMvcResultMatchers.status().isInternalServerError();
             this.mock.perform(mockRequest).andExpect(nonMatch);

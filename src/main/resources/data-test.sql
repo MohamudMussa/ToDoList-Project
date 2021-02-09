@@ -7,7 +7,7 @@ VALUES
 ('Shopping'),
 ('House Items'),
 ('Work'),
-('Hobbies);
+('Hobbies');
 
 
 INSERT INTO TASK_DOMAIN (name, category, rank, completed, my_To_Do_id) 

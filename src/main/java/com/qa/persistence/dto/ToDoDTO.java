@@ -24,6 +24,14 @@ public class ToDoDTO {
 //		this.taskList = taskList;
 	}
 
+	
+	public ToDoDTO(Long id, String listName) {
+		super();
+		this.id = id;
+		this.listName = listName;
+
+	}
+	
 	public Long getId() {
 		return id;
 	}
