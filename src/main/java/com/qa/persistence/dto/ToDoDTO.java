@@ -9,12 +9,19 @@ import java.util.List;
 public class ToDoDTO {
 	
 	private Long id;
-	private String address;
-	private List<TaskDTO> catList;
+	private String category;
+//	private List<TaskDTO> taskList;
 	
 	public ToDoDTO() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public ToDoDTO(Long id, String category, List<TaskDTO> taskList) {
+		super();
+		this.id = id;
+		this.category = category;
+//		this.taskList = taskList;
 	}
 
 	public Long getId() {
@@ -25,26 +32,22 @@ public class ToDoDTO {
 		this.id = id;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public List<TaskDTO> getCatList() {
-		return catList;
-	}
+//	public List<TaskDTO> getTaskList() {
+//		return taskList;
+//	}
+//
+//	public void setTaskList(List<TaskDTO> taskList) {
+//		this.taskList = taskList;
+//	}
 
-	public void setCatList(List<TaskDTO> catList) {
-		this.catList = catList;
-	}
-
-	@Override
-	public String toString() {
-		return "ToDoDTO [id=" + id + ", address=" + address + ", catList=" + catList + "]";
-	}
 
 
 

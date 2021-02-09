@@ -31,11 +31,17 @@ public class ToDoDomain {
 
 
 	private List<TaskDomain> taskList;
+	
+	
+
 
 	public ToDoDomain() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
+
 
 	public ToDoDomain(Long id, String category, List<TaskDomain> taskList) {
 		super();
@@ -44,31 +50,49 @@ public class ToDoDomain {
 		this.taskList = taskList;
 	}
 
+
+
+
 	public Long getId() {
 		return id;
 	}
+
+
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getcategory() {
+
+
+
+	public String getCategory() {
 		return category;
 	}
 
-	public void setcategory(String category) {
+
+
+
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
+
+
+
 	public List<TaskDomain> getTaskList() {
 		return taskList;
-
 	}
+
+
+
 
 	public void setTaskList(List<TaskDomain> taskList) {
 		this.taskList = taskList;
 	}
 
+	
 
 }
 

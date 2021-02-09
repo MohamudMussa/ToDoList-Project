@@ -1,14 +1,15 @@
-INSERT INTO HOUSE_DOMAIN (address) VALUES 
-('202 Drayton Gardens'),
-('56 North Promenade'),
-('48  Holburn Lane'),
-('60  Botley Road'),
-('128  Stroude Road'),
-('126  Friar Street'),
-('111  Fordham Rd'),
-('84  Rowland Rd');
+INSERT INTO TO_DO_DOMAIN (category) VALUES 
+('Helping'),
+('Shopping'),
+('Work'),
+('Work'),
+('Shopping'),
+('House Items'),
+('Work'),
+('Hobbies');
 
-INSERT INTO CAT_DOMAIN (name, category, rank, completed, my_house_id) VALUES 
+
+INSERT INTO TASK_DOMAIN (name, category, rank, completed, my_To_Do_id) VALUES 
 ('Buy Banana', 'Shopping', 2, false,1),
 ('Football', 'Sport', 3, true,2),
 ('Buy Phone', 'Shopping', 2, false,3),
