@@ -19,29 +19,17 @@ public class ToDoDomain {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
 	public Long id;
-
-	private String listName;
-
-
-	// one to many annotation
+	
 	@OneToMany(mappedBy = "myToDo", fetch = FetchType.EAGER)
-
-	// this will remove objects along side their foreign key
 	@OnDelete(action = OnDeleteAction.CASCADE)
-
-
 	private List<TaskDomain> taskList;
 	
-	
-
+	private String listName;
 
 	public ToDoDomain() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-
 
 	public ToDoDomain(Long id, String listName, List<TaskDomain> taskList) {
 		super();
@@ -50,49 +38,35 @@ public class ToDoDomain {
 		this.taskList = taskList;
 	}
 
+	public ToDoDomain(Long id, String listName) {
+		super();
+		this.id = id;
+		this.listName = listName;
 
-
+	}
 
 	public Long getId() {
 		return id;
 	}
 
-
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-
 
 	public String getlistName() {
 		return listName;
 	}
 
-
-
-
 	public void setlistName(String listName) {
 		this.listName = listName;
 	}
-
-
-
 
 	public List<TaskDomain> getTaskList() {
 		return taskList;
 	}
 
-
-
-
 	public void setTaskList(List<TaskDomain> taskList) {
 		this.taskList = taskList;
 	}
 
-	
-
 }
-
