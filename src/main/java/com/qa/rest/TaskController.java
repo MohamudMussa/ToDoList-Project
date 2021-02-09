@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.persistence.domain.TaskDomain;
+import com.qa.persistence.domain.ToDoDomain;
 import com.qa.persistence.dto.TaskDTO;
+import com.qa.persistence.dto.ToDoDTO;
 import com.qa.services.TaskService;
 
 // will be http://localhost:8080/item/create
@@ -57,12 +59,12 @@ public class TaskController {
 
 	}
 
-	// PUT / UPDATE
+	// UPDATE - PUT
 	@PutMapping("/update/{id}")
-	public boolean update(@PathVariable("id") Long id, @RequestBody TaskDomain task) {
-		return false;
-
+	public ResponseEntity<TaskDTO> update(@PathVariable("id") Long id, @RequestBody TaskDomain task) {
+		return  new ResponseEntity<TaskDTO>(this.service.update(id, task), HttpStatus.ACCEPTED);
 	}
+	
 	
 	// DELETE
 	@DeleteMapping("/delete/{id}")
