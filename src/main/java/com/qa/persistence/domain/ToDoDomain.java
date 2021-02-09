@@ -22,11 +22,13 @@ public class ToDoDomain {
 
 	private String category;
 
+
 	// one to many annotation
 	@OneToMany(mappedBy = "myToDo", fetch = FetchType.EAGER)
 
 	// this will remove objects along side their foreign key
 	@OnDelete(action = OnDeleteAction.CASCADE)
+
 
 	private List<TaskDomain> taskList;
 
@@ -58,12 +60,15 @@ public class ToDoDomain {
 		this.category = category;
 	}
 
-	public List<TaskDomain> getCatList() {
+	public List<TaskDomain> getTaskList() {
 		return taskList;
+
 	}
 
-	public void setCatList(List<TaskDomain> taskList) {
+	public void setTaskList(List<TaskDomain> taskList) {
 		this.taskList = taskList;
 	}
 
+
 }
+

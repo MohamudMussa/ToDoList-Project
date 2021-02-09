@@ -103,7 +103,9 @@ public class TaskDomain {
 		return myToDo;
 	}
 
+
 	public void setMyToDo(ToDoDomain myToDo) {
+
 		this.myToDo = myToDo;
 	}
 
