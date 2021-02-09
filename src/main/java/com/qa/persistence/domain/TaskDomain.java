@@ -35,16 +35,7 @@ public class TaskDomain {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TaskDomain(Long id, String name, String category, Integer rank, Boolean completed, ToDoDomain myToDo) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.category = category;
-		this.rank = rank;
-		this.completed = completed;
-		this.myToDo = myToDo;
 
-	}
 
 	public TaskDomain(String name, String category, Integer rank, Boolean completed, ToDoDomain myToDo) {
 		super();
