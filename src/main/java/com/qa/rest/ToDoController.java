@@ -24,7 +24,7 @@ import com.qa.services.ToDoService;
 @CrossOrigin
 @RestController
 @RequestMapping("/todo")
-public class ToDoController {	
+public class ToDoController {
 
 	private ToDoService service;
 

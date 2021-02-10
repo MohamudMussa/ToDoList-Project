@@ -30,9 +30,6 @@
                         data-target="#createMethod">
                         Create
                     </button>
-                            <div class="alert" id="onsuccess"></div>
-                            
-                            
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
                         data-target="#updateMethod">
                         Update
@@ -41,13 +38,9 @@
                         data-target="#deleteMethod">
                         Delete
                     </button>
-                    <button type="button" class="btn btn-primary btn-lg" onclick="readAllToDo();
-                    " data-toggle="modal" >
-                        readAll
-                    </button>
-                    <button type="button" class="btn btn-primary btn-lg" onclick="read();
-                    " data-toggle="modal" >
-                        READone
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#updateMethod">
+                        Update
                     </button>
 
                 </nav>
@@ -79,34 +72,6 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                       <div class="modal" id="readone">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title">Create your ToDo List</h2>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span>&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <input class="input-group-text" type="text" id="name"
-                                        placeholder="Enter ToDo List Name" />
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="createToDoList();"
-                                    data-dismiss="modal">Create</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                
                 <!-- update -------------------->
                 <div class="modal" id="updateMethod">
                     <div class="modal-dialog">
@@ -148,8 +113,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <input class="input-group-text" type="number" id="ID"
-                                            placeholder="ID"/>
+                                        <input class="input-group-text" type="number" id="id"
+                                            placeholder="ID"" />
                                     </div>
                                     </div>
                                     <div class="modal-footer">
@@ -160,30 +125,7 @@
                                 </div>
                         </div>
                     </div>
-                    <!-- readAll -------------------->
-
-                    <div class="modal" id="readAllmethod">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <input class="input-group-text" type="number" id="ID"
-                                            placeholder="ID"" />
-                                    </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" onclick="readAllToDo();"
-                                            data-dismiss="modal">readAll</button>
-                                        <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>  
+                </div>
 
 
 

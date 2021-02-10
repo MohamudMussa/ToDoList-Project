@@ -70,7 +70,7 @@ public class TaskController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Object> delete(@PathVariable("id") Long id) {
 		return this.service.delete(id) ? 
-				new ResponseEntity<>(HttpStatus.NO_CONTENT):
+				new ResponseEntity<>(HttpStatus.BAD_REQUEST):
 				new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
