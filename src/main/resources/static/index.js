@@ -1,8 +1,14 @@
  
 `use strict`;
 
+
+const listName = document.querySelector("#name");
+
+
+
     const readAllTasks = () => {
         fetch("http://localhost:8080/task/read/2")
+
             .then((response) => {
                 if (response.status !== 200) {
                     throw new Error("Error, this has not worked");
@@ -57,8 +63,26 @@
                         console.log(infofromserver.data);
                     })
                 }
-            }).catch((err) => {
-                console.error(err);
-            })
+            }).catch((err) => {console.error(err);})
     }
-;
+
+    const createToDoList = () => {
+        const todoList = listName.value;
+   
+    
+        let data = {
+            listName: todoList
+        }
+
+
+        fetch("http://localhost:8080/todo/create", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/json" }
+        })
+            .then(response => response.json())
+            .then(info => {
+                console.log(info);
+            })
+            .catch(err => console.error(`ERROR = ${err}`));
+    }
