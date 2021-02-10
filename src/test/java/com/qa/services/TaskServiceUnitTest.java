@@ -69,7 +69,8 @@ public class TaskServiceUnitTest {
 		TaskDomain TEST_TASK = new TaskDomain("Help Mum", "Helping", 5, false, null);
 		TaskDTO DTOtest = new TaskDTO(1L, "Buy Banana", "Shopping", 2, false);
 
-		Mockito.when(this.mockRepo.findById(TEST_TASK.getId())).thenReturn(Optional.of(TEST_TASK));
+		Mockito.when(this.mockRepo.findById(TEST_TASK.getId()))
+		.thenReturn(Optional.of(TEST_TASK));
 
 		Assertions.assertThat(this.service.readOne(DTOtest.getId())).isEqualTo(!true);
 
