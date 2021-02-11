@@ -6,20 +6,15 @@ const id = document.querySelector("#ID");
 let host = "http://localhost:8080/";
 const todolist = document.querySelector("#todo");
 const alert = document.querySelector("#onsuccess");
+const alertupdate = document.querySelector("#onsuccessupdate");
 
 
-const printNameToScreen = (username) => {
+const printNameToScreen = (listName) => {
 	let user = document.createElement("p"); // <p> </p>
-	let text = document.createTextNode(`${username}`); // username
+	let text = document.createTextNode(`${listName}`); // username
 	user.appendChild(text); // <p> username </p>
 	todolist.appendChild(user);
 }
-
-
-//api var 
-
-
-
 
 
 
@@ -52,30 +47,6 @@ const createToDoList = () => {
 
 
 
-const updateToDoList = () => {
-	const updateID = id.value;
-	const todoList = listName.value;
-
-
-
-	let data = {
-		listName: todoList
-	}
-
-	console.log(updateID);
-
-	fetch(`http://localhost:8080/todo/update/${updateID}`, {
-		method: "PUT",
-		body: JSON.stringify(data),
-		headers: { "Content-Type": "application/json" }
-	})
-		.then(response => response.json())
-		.then(info => {
-			console.log(info);
-		})
-		.catch(err => console.error(`ERROR = ${err}`));
-
-}
 
 
 
@@ -84,13 +55,13 @@ const deleteToDoList = () => {
 
 
 	fetch(`http://localhost:8080/todo/delete/${deleteID}`, {
-		method: "DELETE"
+		method: "DELETE",
 	}).then((response) => {
 		if (response.status != 204) {
 			throw new Error(`i dont have a status of 204`);
 		} else {
 			console.log(response);
-			console.log(`response is okay (500)`);
+			console.log(`response is okay (204)`);
 			console.log(`your to do with id ${deleteID} was deleted `);
 
 		}
@@ -122,8 +93,15 @@ const readOneMethod = () => {
 		.then(response => response.json())
 		.then(info => {
 			console.log(info);
-		})
-		.catch(err => console.error(`ERROR = ${err}`));
+			if (response.status != 200) {
+				console.log(`A todoList with ${readID} does not exit, please enter a correct ToDo ID `);
+				throw new Error(`i dont have a status of 200`);
+		} else {	
+			console.log(response);
+			console.log(`response is okay (200)`);
+		}
+	}).catch((err) => {
+	})
 }
 
 

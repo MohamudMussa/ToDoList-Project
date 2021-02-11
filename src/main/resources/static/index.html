@@ -34,9 +34,13 @@
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
                         data-target="#updateMethod">Update</button>
 
+                        
+                        <div class="alert" id="onsuccessupdate"></div>
+
 
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
                         data-target="#deleteMethod">Delete</button>
+                        
 
 
                     <button type="button" class="btn btn-primary btn-lg" onclick="readAllToDo();
@@ -109,27 +113,24 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h2 class="modal-title">Update your ToDo List</h2>
+                                <h2 class="modal-title">UPDATE</h2>
                                 <button type="button" class="close" data-dismiss="modal">
                                     <span>&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-                                    <input class="input-group-text" type="number" id="id"
-                                        placeholder="ID you'd like to update" />
+                                    <input class="input-group-text" type="number" id="ID" placeholder="EnterID" />
                                 </div>
-                            </div>
-                            <div class="modal-body">
                                 <div class="row">
-                                    <input class="input-group-text" type="text" id="rank"
-                                        placeholder="Please enter the ID you'd like to update" />
+                                    <input class="input-group-text" type="text" id="name" placeholder="EnterID" />
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" onclick="updateToDoList();"
-                                        data-dismiss="modal">Update</button>
-                                    <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="updateToDoList();"
+                                    data-dismiss="modal">UPDATE</button>
+                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                             </div>
                         </div>
                     </div>
