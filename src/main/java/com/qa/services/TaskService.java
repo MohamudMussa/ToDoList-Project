@@ -24,7 +24,7 @@ public class TaskService {
 		this.repo = repo;
 		this.mapper = mapper;
 	}
-
+	
 	private TaskDTO mapToDTO(TaskDomain model) {
 	
 		return this.mapper.map(model, TaskDTO.class);

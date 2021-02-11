@@ -3,8 +3,7 @@ package com.qa.services;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
+import java.util.Optional;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.google.common.base.Optional;
+
 import com.qa.persistence.domain.TaskDomain;
 import com.qa.persistence.dto.TaskDTO;
 import com.qa.persistence.repos.TaskRepo;
@@ -65,17 +64,22 @@ public class TaskServiceUnitTest {
 	
 	@Test
 	public void readOne() {
-//		
-//		TaskDomain TEST_TASK = new TaskDomain("Help Mum", "Helping", 5, false, null);
-//		TaskDTO DTOtest = new TaskDTO(1L, "Buy Banana", "Shopping", 2, false);
-//
-//		Mockito.when(this.mockRepo.findById(TEST_TASK.getId()))
-//		.thenReturn(Optional.of(TEST_TASK));
-//
-//		Assertions.assertThat(this.service.readOne(DTOtest.getId())).isEqualTo(!true);
-//
-//		Mockito.verify(this.mockRepo, Mockito.times(1)).deleteById(TEST_TASK.getId());
-//		Mockito.verify(this.mockRepo, Mockito.times(1)).existsById(TEST_TASK.getId());;
+		
+		TaskDomain test_task = new TaskDomain(1L, "Help Mum", "Helping", 5, false, null);
+		TaskDTO test_dto = this.MockMapper.map(test_task, TaskDTO.class);
+		
+		//the rules
+		Mockito.when(this.mockRepo.findById(test_task.getId())).thenReturn(Optional.of(test_task));
+		
+		//the task
+		TaskDTO result = this.service.readOne(1L);
+
+		
+		Assertions.assertThat(result).isEqualTo(test_dto);
+		//should only run once
+		Mockito.verify(this.mockRepo, Mockito.times(1)).findById(1L);
+		
+		
 
 	}
 	
@@ -83,6 +87,32 @@ public class TaskServiceUnitTest {
 	
 	@Test
 	public void readAll() {
+		
+		TaskDomain testTask = new TaskDomain(1L, "Help Mum", "Helping", 5, false, null);
+//		TaskDomain testTaskTwo = new TaskDomain(1L, "Help Mum", "Helping", 5, false, null);
+//		TaskDomain testTaskThree = new TaskDomain(1L, "Help Mum", "Helping", 5, false, null);
+		List<TaskDomain> testList =  new ArrayList<>();
+		testList.add(testTask);
+//		testList.add(testTaskTwo);
+//		testList.add(testTaskThree);
+		
+		TaskDTO testDTO = new TaskDTO(1L, "Buy Banana", "Shopping", 2, false);
+		List<TaskDTO> testDTOList = new ArrayList<>();
+		testDTOList.add(testDTO);
+
+		// Rules
+		Mockito.when(this.mockRepo.findAll() ).thenReturn(testList);
+		Mockito.when(this.MockMapper.map(testTask, TaskDTO.class)).thenReturn(testDTO);
+
+		// Actions
+
+		List<TaskDTO> result = this.service.readAll();
+
+		// Assertions
+
+		Assertions.assertThat(result).usingRecursiveComparison()
+		.isEqualTo(testDTOList);
+		
 
 	}
 	
@@ -90,6 +120,19 @@ public class TaskServiceUnitTest {
 //	DELETE
 	@Test
 	public void delete() {
+		
+		//resources
+		TaskDomain test_task = new TaskDomain(1L, "Help Mum", "Helping", 5, false, null);
+		TaskDTO testDTO = new TaskDTO(1L, "Buy Banana", "Shopping", 2, false);
+		//rules
+		Mockito.when(this.mockRepo.existsById(test_task.getId())).thenReturn(true);
+		
+		//assertions
+		Assertions.assertThat(this.service.delete(testDTO.getId())).isEqualTo(false);
+
+		//verify it has ran once each
+		Mockito.verify(this.mockRepo, Mockito.times(1)).deleteById(test_task.getId());
+		Mockito.verify(this.mockRepo, Mockito.times(1)).existsById(test_task.getId());
 
 	}
 	

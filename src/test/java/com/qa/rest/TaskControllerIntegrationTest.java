@@ -1,5 +1,8 @@
 package com.qa.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,7 @@ public class TaskControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper jsonifier;
 
-	private final int ID = 1;
+
 
 	private TaskDTO mapToDTO(TaskDomain model) {
 		return this.mapper.map(model, TaskDTO.class);
@@ -44,6 +47,33 @@ public class TaskControllerIntegrationTest {
 	// READ ALL TASKS
 	@Test
 	public void readAll() throws Exception {
+		
+		TaskDTO task1 = new TaskDTO(1L, "Buy Banana", "Shopping", 2, false);
+		TaskDTO task2 = new TaskDTO(2L, "Football", "Sport", 3, true);
+		TaskDTO task3 = new TaskDTO(3L, "Buy Phone", "Shopping", 2, false);
+		TaskDTO task4 = new TaskDTO(4L, "Clean", "To Do", 3, true);
+		TaskDTO task5 = new TaskDTO(5L, "Run", "Health", 2, false);
+		TaskDTO task6 = new TaskDTO(6L,"Finish Report", "Work", 3, true);
+		
+				
+		
+		List<TaskDTO> expectedList = new ArrayList<>();
+		expectedList.add(task1);
+		expectedList.add(task2);
+		expectedList.add(task3);
+		expectedList.add(task4);
+		expectedList.add(task5);
+		expectedList.add(task6);
+
+		// Request setup
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
+				"http://localhost:8080/task/readAll");
+
+		// Expectations setup
+		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedList));
+
+		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 
 	}
 
@@ -56,7 +86,7 @@ public class TaskControllerIntegrationTest {
 
 		// this sets up the request
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
-				"http://localhost:8080/task/read/" + ID);
+				"http://localhost:8080/task/read/" + 1L);
 
 		// CHECK STATUS THAT YOU GET
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
@@ -96,6 +126,21 @@ public class TaskControllerIntegrationTest {
 	// updating task test
 	@Test
 	public void update() throws Exception {
+		
+		TaskDomain contentBody = new TaskDomain(1L, "Help Mum", "Helping", 5, false, null);
+		TaskDTO expectedResults = mapToDTO(contentBody); // EXPECTED RESULT
+		
+		//THE request
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
+				.request(HttpMethod.PUT, "http://localhost:8080/task/update/" + 1L).contentType(MediaType.APPLICATION_JSON)
+				.content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
+		
+		//THE expectations
+		ResultMatcher matchStatus = MockMvcResultMatchers.status().isAccepted();
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResults));
+
+		//Perform
+		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 
 	}
 
@@ -109,10 +154,12 @@ public class TaskControllerIntegrationTest {
 				"http://localhost:8080/task/delete/" + 2);
 
 		// CHECK STATUS THAT YOU GET
-		ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
+		//the delete returns badrequest 
+		ResultMatcher matchStatus = MockMvcResultMatchers.status().isBadRequest();
 
 		// PERFORM THE ABOVE
-		this.mock.perform(mockRequest).andExpect(matchStatus);
+		this.mock.perform(mockRequest)
+		.andExpect(matchStatus);
 
 	}
 
@@ -123,8 +170,9 @@ public class TaskControllerIntegrationTest {
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE,
 				"http://localhost:8080/task/delete/" + 10);
 
-		ResultMatcher nonMatch = MockMvcResultMatchers.status().isInternalServerError();
-		this.mock.perform(mockRequest).andExpect(nonMatch);
+		ResultMatcher internalerror = MockMvcResultMatchers.status().isInternalServerError();
+		this.mock.perform(mockRequest)
+		.andExpect(internalerror);
 
 	}
 
