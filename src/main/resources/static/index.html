@@ -27,28 +27,26 @@
             <nav class="row">
                 <nav class="col-md">
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                        data-target="#createMethod">
-                        Create
-                    </button>
-                            <div class="alert" id="onsuccess"></div>
-                            
-                            
+                        data-target="#createMethod">Create</button>
+                    <div class="alert" id="onsuccess"></div>
+
+
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                        data-target="#updateMethod">
-                        Update
-                    </button>
+                        data-target="#updateMethod">Update</button>
+
+
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                        data-target="#deleteMethod">
-                        Delete
-                    </button>
+                        data-target="#deleteMethod">Delete</button>
+
+
                     <button type="button" class="btn btn-primary btn-lg" onclick="readAllToDo();
-                    " data-toggle="modal" >
-                        readAll
-                    </button>
-                    <button type="button" class="btn btn-primary btn-lg" onclick="read();
-                    " data-toggle="modal" >
-                        READone
-                    </button>
+                    " data-toggle="modal">
+                        readAll</button>
+
+
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#readone">readOne</button>
+
 
                 </nav>
 
@@ -79,34 +77,33 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                       <div class="modal" id="readone">
+
+
+                <div class="modal" id="readone">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h2 class="modal-title">Create your ToDo List</h2>
+                                <h2 class="modal-title">READ ONE</h2>
                                 <button type="button" class="close" data-dismiss="modal">
                                     <span>&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-                                    <input class="input-group-text" type="text" id="name"
-                                        placeholder="Enter ToDo List Name" />
+                                    <input class="input-group-text" type="number" id="ID" placeholder="EnterID" />
                                 </div>
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="createToDoList();"
-                                    data-dismiss="modal">Create</button>
+                                <button type="button" class="btn btn-success" onclick="readOneMethod();"
+                                    data-dismiss="modal">READ ONE</button>
                                 <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <!-- update -------------------->
                 <div class="modal" id="updateMethod">
                     <div class="modal-dialog">
@@ -120,11 +117,13 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <input class="input-group-text" type="number" id="id"
-                                        placeholder="Please enter the ID you'd like to update" />
+                                        placeholder="ID you'd like to update" />
                                 </div>
+                            </div>
+                            <div class="modal-body">
                                 <div class="row">
-                                    <input class="input-group-text" type="text" id="name"
-                                        placeholder="Enter your new ToDo List Name" />
+                                    <input class="input-group-text" type="text" id="rank"
+                                        placeholder="Please enter the ID you'd like to update" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" onclick="updateToDoList();"
@@ -135,73 +134,50 @@
                         </div>
                     </div>
                 </div>
-                    <!-- DELETE -------------------->
 
-                    <div class="modal" id="deleteMethod">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h2 class="modal-title">Delete To Do LIST</h2>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
+                <!-- DELETE -------------------->
+
+                <div class="modal" id="deleteMethod">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Delete To Do LIST</h2>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <input class="input-group-text" type="number" id="ID" placeholder="ID" />
                                 </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <input class="input-group-text" type="number" id="ID"
-                                            placeholder="ID"/>
-                                    </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" onclick="deleteToDoList();"
-                                            data-dismiss="modal">DELETE</button>
-                                        <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="deleteToDoList();"
+                                    data-dismiss="modal">DELETE</button>
+                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+                            </div>
                         </div>
                     </div>
-                    <!-- readAll -------------------->
-
-                    <div class="modal" id="readAllmethod">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">
-                                        <span>&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <input class="input-group-text" type="number" id="ID"
-                                            placeholder="ID"" />
-                                    </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" onclick="readAllToDo();"
-                                            data-dismiss="modal">readAll</button>
-                                        <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>  
+                </div>
 
 
 
 
 
-                        <!-- Optional JavaScript -->
-                        <script src="./index.js"></script>
 
-                        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                            crossorigin="anonymous"></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                            crossorigin="anonymous"></script>
-                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                            crossorigin="anonymous"></script>
+                <!-- Optional JavaScript -->
+                <script src="./index.js"></script>
+
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                    crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                    crossorigin="anonymous"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    crossorigin="anonymous"></script>
 </body>
 
 </html>
