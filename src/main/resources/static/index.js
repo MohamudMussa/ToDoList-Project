@@ -1,26 +1,276 @@
-`use strict`;
+'use strict';
 
 
-const listName = document.querySelector("#name");
-const id = document.querySelector("#ID");
+//making my todolist
+const idref = document.querySelector("#taskID");
+const task = document.querySelector("#task"); 
+const categoryRef = document.querySelector("#category"); 
+const rankRef = document.querySelector("#rank"); 
+const completeRef = document.querySelector("#complete"); 
+
+
+//delete inpiut
+const idforDelete = document.querySelector("#deleteID");
+
+
+//creating input
+const stateTask = document.querySelector("#taskinput");
+const stateCategory = document.querySelector("#categoryInput");
+const stateRank = document.querySelector("#rankInput");
+const stateCompleted = document.querySelector("#completedInput");
+const stateListValue = document.querySelector("#listValue");
+
+
+//updateInput
+const idforUpdate = document.querySelector("#updateID");
+const updateTask = document.querySelector("#updateTask");
+const updateCategory = document.querySelector("#updateCategory");
+const updateRank = document.querySelector("#updateRank");
+const updateCompleted = document.querySelector("#updateCompleted");
+const updateListValue = document.querySelector("#updateTodoList");
 
 
 
 
-const ToDo = document.querySelector("#ToDo"); 
-const category = document.querySelector("#category");
+//making my todolist
+const ToDoListID = document.querySelector("#todoID");
+const todoListName = document.querySelector("#ListName"); 
+
+
+//creating my todolist
+const newList = document.querySelector("#newListName");
+
+//deleteting List
+
+
+//displaying data
+const info = (user) => {
+
+
+
+    let taskid = user.id;
+    let listName = user.name;
+    let category = user.category;
+    let rank = user.rank;
+    let completed = user.completed;
+
+    //taskID
+    let tabletask = document.createElement("p"); // <p> </p>s
+    let texttaskid = document.createTextNode(`${taskid}`); // creating a node that will append the tasks below
+    tabletask.appendChild(texttaskid); //
+    idref.appendChild(tabletask);
+
+    //task
+    let tableone = document.createElement("p"); // <p> </p>s
+    let textList = document.createTextNode(`${listName}`); // creating a node that will append the tasks below
+    tableone.appendChild(textList); //
+    task.appendChild(tableone);
+
+    //category
+    let tabletwo = document.createElement("p"); // <p> </p>s
+    let textCat = document.createTextNode(`${category}`); // creating a node that will append the tasks below
+    tabletwo.appendChild(textCat); // 
+    categoryRef.appendChild(tabletwo);
+
+
+    //rank
+    let tablethree = document.createElement("p"); // <p> </p>s
+    let textRank = document.createTextNode(`${rank}`); // creating a node that will append the tasks below
+    tablethree.appendChild(textRank); //
+    rankRef.appendChild(tablethree);
+
+
+    //Completed
+    let tablefour = document.createElement("p"); // <p> </p>s
+    let textCompleted = document.createTextNode(`${completed}`); // creating a node that will append the tasks below
+    tablefour.appendChild(textCompleted); //    
+    completeRef.appendChild(tablefour);
+
+ 
+}
+
+//fetching data
+const retrieveData = () => {
+    fetch("http://localhost:8080/task/readAll")
+    .then((response) => {
+        // check that the response is OK (i.e. 200)
+        if(response.status !== 200){
+            throw new Error("status is not 200");
+        }else{
+            console.log(response);
+            console.log(`response is 200`);
+            //json returns PROMISE
+            response.json()
+            .then((tasks) =>{ // all the todo list
+             //   console.log(tasks);
+                for(let user of tasks){
+                    //console.log(user);
+                    info(user);  // just the task list                     
+                }
+            })
+        }
+    }).catch((err) => {
+        console.error(err);
+    })
+}
+
+retrieveData(); 
 
 
 
 const createToDoList = () => {
-	const todoList = listName.value;
+	const taskname = stateTask.value;
+    const category = stateCategory.value;
+    const rank = stateRank.value;
+    const completed = stateCompleted.value;
+    const listvalue = stateListValue.value;
+
+
+	let createdata = {
+		name: taskname,
+        category:category,
+        rank: rank,
+        completed: completed,
+        myToDo: {id:listvalue}
+
+	}
+
+	fetch("http://localhost:8080/task/create", {
+		method: "POST",
+		body: JSON.stringify(createdata),
+		headers: { "Content-Type": "application/json" }
+	})
+		.then(response => response.json())
+		.then(info => {
+			console.log(info);
+			console.log("success");
+            location.reload() //reloads the  info
+		})
+		.catch(err => console.error(`ERROR = ${err}`));
+}
+
+
+const updateToDoList = () => {
+    const updateID = idforUpdate.value;
+	const taskname = updateTask.value;
+    const category = updateCategory.value;
+    const rank = updateRank.value;
+    const completed = updateCompleted.value;
+    const listvalue = updateListValue.value;
+
+
+	let updateData = {
+		name: taskname,
+        category:category,
+        rank: rank,
+        completed: completed,
+        myToDo: {id:listvalue}
+
+	}
+
+	fetch(`http://localhost:8080/task/update/${updateID}`, {
+		method: "PUT",
+		body: JSON.stringify(updateData),
+		headers: { "Content-Type": "application/json" }
+	})
+		.then(response => response.json())
+		.then(info => {
+			console.log(info);
+			console.log("success");
+            location.reload() //reloads the delete info
+		})
+		.catch(err => console.error(`ERROR = ${err}`));
+}
+
+function deleteAlert() {
+    alert ("Sorry! That ID is not in the table, please select the corred ID ");
+}
+
+function createAlert() {
+    alert ("Sorry! something went wrong, please ensure to type the correct data! ");
+}
+
+const deleteToDoList = () => {
+
+	const ID = idforDelete.value;
+
+
+	fetch(`http://localhost:8080/task/delete/${ID}`, {
+		method: "DELETE",
+	}).then((response) => {
+		if (response.status != 204) {
+            deleteAlert();
+			throw new Error(`status is not 204`);
+
+		} else {
+			console.log(response);
+			console.log(`response is okay (204)`);
+			console.log(`your to do with id ${deleteID} was deleted `);
+            location.reload() //reloads the delete info
+
+		}
+	}).catch((err) => {
+		console.error(err);
+	})
+}
+
+
+//RETRIVING DATA
+const retrieveToDo = () => {
+    fetch("http://localhost:8080/todo/readAll")
+    .then((response) => {
+        // check that the response is OK (i.e. 200)
+        if(response.status !== 200){
+            throw new Error("status is not 200");
+        }else{
+            console.log(response);
+            console.log(`response is 200`);
+            //json returns a PROMISE
+            response.json()
+            .then((todo) =>{ // all the todo list
+              console.log(todo);
+                for(let user of todo){
+                    todoList(user);  // just the task list                     
+                }
+            })
+        }
+    }).catch((err) => {
+        console.error(err);
+    })
+}
+
+retrieveToDo(); 
+
+
+//displaying data of the LIST
+const todoList = (todo) => {
+    
+
+    let myToDoID = todo.id; 
+    let myListNames = todo.listName; 
+
+    //taskID
+    let tableToDoID = document.createElement("p"); // <p> </p>
+    let textToDoID = document.createTextNode(`${myToDoID}`); // creating a node that will append the tasks below
+    tableToDoID.appendChild(textToDoID); //
+    ToDoListID.appendChild(tableToDoID);
+
+    //taskID
+    let tableToDoName = document.createElement("p"); // <p> </p>
+    let textToDoList = document.createTextNode(`${myListNames}`); // creating a node that will append the tasks below
+    tableToDoName.appendChild(textToDoList); //
+    todoListName.appendChild(tableToDoName);
+ 
+}
+
+
+const createLIST = () => {
+
+	const todoList = newList.value;
 
 	let data = {
 		listName: todoList
 	}
-	
-
-
 	fetch("http://localhost:8080/todo/create", {
 		method: "POST",
 		body: JSON.stringify(data),
@@ -30,12 +280,7 @@ const createToDoList = () => {
 		.then(info => {
 			console.log(info);
 			console.log("success");
-			alert.setAttribute("class", "alert alert-success");
-			alert.innerHTML = `${todoList} has been created`;
-			setTimeout(() => {
-				alert.removeAttribute("class");
-				alert.innerHTML = "";
-			}, 2000);
+            location.reload() //reloads the  info
 		})
 		.catch(err => console.error(`ERROR = ${err}`));
 }
@@ -44,67 +289,64 @@ const createToDoList = () => {
 
 
 
-
-const deleteToDoList = () => {
-	const deleteID = id.value;
-
-
-	fetch(`http://localhost:8080/todo/delete/${deleteID}`, {
-		method: "DELETE",
-	}).then((response) => {
-		if (response.status != 204) {
-			throw new Error(`i dont have a status of 204`);
-		} else {
-			console.log(response);
-			console.log(`response is okay (204)`);
-			console.log(`your to do with id ${deleteID} was deleted `);
-
-		}
-	}).catch((err) => {
-		console.error(err);
-	})
-}
-
-const readAllToDo = () => {
-	fetch(`http://localhost:8080/todo/readAll`, {
-		method: "GET",
-	})
-		.then(response => response.json())
-		.then((info) =>{
-			console.log(info);
-			console.log(info.data); // key - return array(6)
-			for(let name of info.data){
-				console.log(users.listName);
-				printNameToScreen(users.listName);
-			}
-		})
-	}
+// const updateToDoList = () => {
+//     const updateID = idforUpdate.value;
+// 	const taskname = updateTask.value;
+//     const category = updateCategory.value;
+//     const rank = updateRank.value;
+//     const completed = updateCompleted.value;
+//     const listvalue = updateListValue.value;
 
 
-const readOneMethod = () => {
+// 	let updateData = {
+// 		name: taskname,
+//         category:category,
+//         rank: rank,
+//         completed: completed,
+//         myToDo: {id:listvalue}
 
-	const readID = id.value;
+// 	}
+
+// 	fetch(`http://localhost:8080/task/update/${updateID}`, {
+// 		method: "PUT",
+// 		body: JSON.stringify(updateData),
+// 		headers: { "Content-Type": "application/json" }
+// 	})
+// 		.then(response => response.json())
+// 		.then(info => {
+// 			console.log(info);
+// 			console.log("success");
+//             location.reload() //reloads the delete info
+// 		})
+// 		.catch(err => console.error(`ERROR = ${err}`));
+// }
+
+// function deleteAlert() {
+//     alert ("Sorry! That ID is not in the table, please select the corred ID ");
+// }
+
+// function createAlert() {
+//     alert ("Sorry! something went wrong, please ensure to type the correct data! ");
+// }
+
+// const deleteToDoList = () => {
+
+// 	const ID = idforDelete.value;
 
 
-	fetch(`http://localhost:8080/todo/read/${readID}`, {
-		method: "GET",
-	})
-		.then(response => response.json())
-		.then(info => {
-			console.log(info);
-			if (response.status != 200) {
-				console.log(`A todoList with ${readID} does not exit, please enter a correct ToDo ID `);
-				throw new Error(`i dont have a status of 200`);
-		} else {	
-			console.log(response);
-			console.log(`response is okay (200)`);
-		}
-	}).catch((err) => {
-	})
-}
+// 	fetch(`http://localhost:8080/task/delete/${ID}`, {
+// 		method: "DELETE",
+// 	}).then((response) => {
+		// if (response.status != 204) {
+        //     deleteAlert();
+		// 	throw new Error(`error not 204`);
 
+		// } else {
+// 			console.log(response);
+//             location.reload() //reloads the delete info
 
-
-
-
-
+// 		}
+// 	}).catch((err) => {
+// 		console.error(err);
+// 	})
+// }
