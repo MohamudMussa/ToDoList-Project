@@ -3,7 +3,7 @@
 
 const listName = document.querySelector("#name");
 const id = document.querySelector("#ID");
-let host = "http://localhost:8080/";
+const host = "http://localhost:8080/";
 const todolist = document.querySelector("#todo");
 const alert = document.querySelector("#onsuccess");
 const alertupdate = document.querySelector("#onsuccessupdate");
@@ -29,6 +29,8 @@ const createToDoList = () => {
 	let data = {
 		listName: todoList
 	}
+
+	
 
 
 	fetch("http://localhost:8080/todo/create", {

@@ -37,9 +37,11 @@ public class TaskServiceUnitTest {
 	@Test
 	public void create() {
 		
+		//needed info
 		TaskDomain TEST_TASK = new TaskDomain("Help Mum", "Helping", 5, false, null);
 		TaskDTO DTOtest = new TaskDTO(1L, "Buy Banana", "Shopping", 2, false);
 
+		//rule
 		Mockito.when(this.mockRepo.save(Mockito.any(TaskDomain.class))).thenReturn(TEST_TASK);
 		Mockito.when(this.MockMapper.map(TEST_TASK, TaskDTO.class)).thenReturn(DTOtest);
 
