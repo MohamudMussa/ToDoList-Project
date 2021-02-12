@@ -111,16 +111,20 @@ public class TaskControllerIntegrationTest {
 		// this sets up the request
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
 				.request(HttpMethod.POST, "http://localhost:8080/task/create").contentType(MediaType.APPLICATION_JSON)
-				.content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
+				.content(jsonifier.writeValueAsString(contentBody))
+				.accept(MediaType.APPLICATION_JSON);
 
 		// CHECK STATUS THAT YOU GET
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isCreated();
 
 		// CHECK IF YOU CREATED TASK
-		ResultMatcher matchConent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResults));
+		ResultMatcher matchConent = MockMvcResultMatchers.content()
+				.json(jsonifier.writeValueAsString(expectedResults));
 
 		// PERFORM THE ABOVE
-		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchConent);
+		this.mock.perform(mockRequest)
+		.andExpect(matchStatus)
+		.andExpect(matchConent);
 	}
 
 	// updating task test
@@ -132,15 +136,21 @@ public class TaskControllerIntegrationTest {
 		
 		//THE request
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-				.request(HttpMethod.PUT, "http://localhost:8080/task/update/" + 1L).contentType(MediaType.APPLICATION_JSON)
-				.content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
+				.request(HttpMethod.PUT, "http://localhost:8080/task/update/" + 1L)
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(jsonifier.writeValueAsString(contentBody))
+				.accept(MediaType.APPLICATION_JSON);
 		
 		//THE expectations
-		ResultMatcher matchStatus = MockMvcResultMatchers.status().isAccepted();
-		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResults));
+		ResultMatcher matchStatus = MockMvcResultMatchers.status()
+				.isAccepted();
+		ResultMatcher matchContent = MockMvcResultMatchers.content()
+				.json(jsonifier.writeValueAsString(expectedResults));
 
 		//Perform
-		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
+		this.mock.perform(mockRequest)
+		.andExpect(matchStatus)
+		.andExpect(matchContent);
 
 	}
 
@@ -150,12 +160,14 @@ public class TaskControllerIntegrationTest {
 
 		// this sets up the request
 		// we are going to delete ID 2
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE,
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
+				.request(HttpMethod.DELETE,
 				"http://localhost:8080/task/delete/" + 2);
 
 		// CHECK STATUS THAT YOU GET
 		//the delete returns badrequest 
-		ResultMatcher matchStatus = MockMvcResultMatchers.status().isBadRequest();
+		ResultMatcher matchStatus = MockMvcResultMatchers.status()
+				.isBadRequest();
 
 		// PERFORM THE ABOVE
 		this.mock.perform(mockRequest)

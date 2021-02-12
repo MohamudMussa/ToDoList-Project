@@ -9,6 +9,11 @@ const alert = document.querySelector("#onsuccess");
 const alertupdate = document.querySelector("#onsuccessupdate");
 
 
+
+const ToDo = document.querySelector("#ToDo"); 
+const category = document.querySelector("#category");
+
+
 const printNameToScreen = (listName) => {
 	let user = document.createElement("p"); // <p> </p>
 	let text = document.createTextNode(`${listName}`); // username
@@ -75,11 +80,15 @@ const readAllToDo = () => {
 		method: "GET",
 	})
 		.then(response => response.json())
-		.then(info => {
+		.then((info) =>{
 			console.log(info);
+			console.log(info.data); // key - return array(6)
+			for(let name of info.data){
+				console.log(users.listName);
+				printNameToScreen(users.listName);
+			}
 		})
-		.catch(err => console.error(`ERROR = ${err}`));
-}
+	}
 
 
 const readOneMethod = () => {
@@ -103,6 +112,8 @@ const readOneMethod = () => {
 	}).catch((err) => {
 	})
 }
+
+
 
 
 
