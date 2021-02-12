@@ -167,7 +167,7 @@ public class TaskControllerIntegrationTest {
 		// CHECK STATUS THAT YOU GET
 		//the delete returns badrequest 
 		ResultMatcher matchStatus = MockMvcResultMatchers.status()
-				.isBadRequest();
+				.isNoContent();
 
 		// PERFORM THE ABOVE
 		this.mock.perform(mockRequest)

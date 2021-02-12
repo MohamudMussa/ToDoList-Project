@@ -3,23 +3,12 @@
 
 const listName = document.querySelector("#name");
 const id = document.querySelector("#ID");
-const host = "http://localhost:8080/";
-const todolist = document.querySelector("#todo");
-const alert = document.querySelector("#onsuccess");
-const alertupdate = document.querySelector("#onsuccessupdate");
+
 
 
 
 const ToDo = document.querySelector("#ToDo"); 
 const category = document.querySelector("#category");
-
-
-const printNameToScreen = (listName) => {
-	let user = document.createElement("p"); // <p> </p>
-	let text = document.createTextNode(`${listName}`); // username
-	user.appendChild(text); // <p> username </p>
-	todolist.appendChild(user);
-}
 
 
 
@@ -29,7 +18,6 @@ const createToDoList = () => {
 	let data = {
 		listName: todoList
 	}
-
 	
 
 
