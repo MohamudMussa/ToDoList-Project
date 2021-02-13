@@ -18,7 +18,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.qa.persistence.domain.TaskDomain;
 import com.qa.persistence.domain.ToDoDomain;
+import com.qa.persistence.dto.TaskDTO;
 import com.qa.persistence.dto.ToDoDTO;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -35,7 +37,7 @@ public class ToDoControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper jsonifier;
 
-	private final int ID = 1;
+
 
 	private ToDoDTO mapToDTO(ToDoDomain model) {
 		return this.mapper.map(model, ToDoDTO.class);
@@ -56,7 +58,7 @@ public class ToDoControllerIntegrationTest {
 
         // this sets up the request
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
-                "http://localhost:8080/todo/read/" + ID);
+                "http://localhost:8080/todo/read/" + 1L);
 
         // CHECK STATUS THAT YOU GET
         ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
@@ -97,6 +99,18 @@ public class ToDoControllerIntegrationTest {
 	@Test
 	public void update() throws Exception {
 		
+		ToDoDomain test_task = new ToDoDomain(1L, "Help Mum");
+		ToDoDTO expected = mapToDTO(test_task);
+		
+
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
+				.request(HttpMethod.PUT, "http://localhost:8080/todo/update/" + 1L)
+				.contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(test_task)).accept(MediaType.APPLICATION_JSON);
+
+		ResultMatcher matchStatus = MockMvcResultMatchers.status().isAccepted();
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expected));
+
+		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 		
 
 	}

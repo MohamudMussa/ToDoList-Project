@@ -1,0 +1,41 @@
+.main {
+    display: block;
+    position: relative;
+    top: -2px;
+    height: 200px;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1920 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="rgba(0, 0, 0, 1)" d="M 0 0 C 485.5 0 485.5 110 971 110 L 971 110 L 971 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgba(0, 0, 0, 1)" d="M 970 110 C 1445 110 1445 0 1920 0 L 1920 0 L 1920 0 L 970 0 Z" stroke-width="0"></path> </svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+   }
+   
+   @media (max-width:1919px) {
+    .div {
+      background-size: contain;
+    }
+   }
+
+   * {
+    
+    background-color:black;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+p, h3, h1, h2, h3, h4, h5, h6{
+    color: white;
+    text-align: center;
+    background-color:black;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+ .hr{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
