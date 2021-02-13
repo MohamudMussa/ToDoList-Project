@@ -9,7 +9,7 @@ const rankRef = document.querySelector("#rank");
 const completeRef = document.querySelector("#complete"); 
 
 
-//delete inpiut
+//delete inpiut for tasks
 const idforDelete = document.querySelector("#deleteID");
 
 
@@ -32,15 +32,21 @@ const updateListValue = document.querySelector("#updateTodoList");
 
 
 
-//making my todolist
+//making my list
 const ToDoListID = document.querySelector("#todoID");
 const todoListName = document.querySelector("#ListName"); 
 
 
-//creating my todolist
+//creating my list
 const newList = document.querySelector("#newListName");
 
-//deleteting List
+//updating my list
+const idUpdater = document.querySelector("#updatedIDforList");
+const listNameUpdater = document.querySelector("#updatedListNametxt");
+
+
+//delete inpiut for list
+const idListDelete = document.querySelector("#deleteListID");
 
 
 //displaying data
@@ -287,66 +293,48 @@ const createLIST = () => {
 
 
 
+const updateMynList = () => {
+    const updatedListID = idUpdater.value;
+	const updatedListName = listNameUpdater.value;
 
 
-// const updateToDoList = () => {
-//     const updateID = idforUpdate.value;
-// 	const taskname = updateTask.value;
-//     const category = updateCategory.value;
-//     const rank = updateRank.value;
-//     const completed = updateCompleted.value;
-//     const listvalue = updateListValue.value;
+	let updateData = {
+        listName: updatedListName
+	}
+
+	fetch(`http://localhost:8080/todo/update/${updatedListID}`, {
+		method: "PUT",
+		body: JSON.stringify(updateData),
+		headers: { "Content-Type": "application/json" }
+	})
+		.then(response => response.json())
+		.then(info => {
+			console.log(info);
+			console.log("success");
+            location.reload() //reloads the  info
+		})
+		.catch(err => console.error(`ERROR = ${err} ${deleteAlert()}`));
+}
 
 
-// 	let updateData = {
-// 		name: taskname,
-//         category:category,
-//         rank: rank,
-//         completed: completed,
-//         myToDo: {id:listvalue}
+const deleteAlist = () => {
 
-// 	}
-
-// 	fetch(`http://localhost:8080/task/update/${updateID}`, {
-// 		method: "PUT",
-// 		body: JSON.stringify(updateData),
-// 		headers: { "Content-Type": "application/json" }
-// 	})
-// 		.then(response => response.json())
-// 		.then(info => {
-// 			console.log(info);
-// 			console.log("success");
-//             location.reload() //reloads the delete info
-// 		})
-// 		.catch(err => console.error(`ERROR = ${err}`));
-// }
-
-// function deleteAlert() {
-//     alert ("Sorry! That ID is not in the table, please select the corred ID ");
-// }
-
-// function createAlert() {
-//     alert ("Sorry! something went wrong, please ensure to type the correct data! ");
-// }
-
-// const deleteToDoList = () => {
-
-// 	const ID = idforDelete.value;
+	const idList = idListDelete.value;
 
 
-// 	fetch(`http://localhost:8080/task/delete/${ID}`, {
-// 		method: "DELETE",
-// 	}).then((response) => {
-		// if (response.status != 204) {
-        //     deleteAlert();
-		// 	throw new Error(`error not 204`);
+	fetch(`http://localhost:8080/todo/delete/${idList}`, {
+		method: "DELETE",
+	}).then((response) => {
+		if (response.status != 204) {
+            deleteAlert(); //id does not exist
+			throw new Error(`error not 204`);
 
-		// } else {
-// 			console.log(response);
-//             location.reload() //reloads the delete info
+		} else {
+			console.log(response);
+            location.reload() //reloads the delete info
 
-// 		}
-// 	}).catch((err) => {
-// 		console.error(err);
-// 	})
-// }
+		}
+	}).catch((err) => {
+		console.error(err);
+	})
+}

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fetch Example</title>
+    <title>ToDolist by Mohamud Mussa</title>
     <!-- Stylesheet here -->
 
     <link rel = "stylesheet"   type = "text/css" href = "index.css" />
@@ -270,7 +270,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h2 class="modal-title">Create your List</h2>
+                                <h2 class="modal-title">Update List</h2>
                                 <button type="button" class="close" data-dismiss="modal">
                                     <span>&times;</span>
                                 </button>
@@ -278,16 +278,16 @@
                             <div class="modal-body">
 
                                 <div class="row">
-                                    <input class="input-group-text" type="number" id="updateID" placeholder="updateID" />
+                                    <input class="input-group-text" type="number" id="updatedIDforList" placeholder="updatedIDforList" />
                                 </div>
 
                                 <div class="row">
-                                    <input class="input-group-text" type="text" id="updateTask" placeholder="updateTask" />
+                                    <input class="input-group-text" type="text" id="updatedListNametxt" placeholder="updatedListNametxt" />
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="updateList();"
-                                    data-dismiss="modal">Create</button>
+                                <button type="button" class="btn btn-success" onclick="updateMynList();"
+                                data-dismiss="modal">Update</button>
                                 <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                             </div>
                         </div>
@@ -307,11 +307,11 @@
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-                                    <input class="input-group-text" type="number" id="deleteID" placeholder="ID" />
+                                    <input class="input-group-text" type="number" id="deleteListID" placeholder="ID" />
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="deleteToDoList();"
+                                <button type="button" class="btn btn-success" onclick="deleteAlist();"
                                     data-dismiss="modal">DELETE</button>
                                 <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                             </div>
