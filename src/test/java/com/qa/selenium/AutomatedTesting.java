@@ -3,11 +3,15 @@ package com.qa.selenium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 
 public class AutomatedTesting {
@@ -41,4 +45,19 @@ public class AutomatedTesting {
     public static void tearDown() {
         driver.close();
     }
+    
+	public static ChromeOptions chromeCfg() {
+		 Map<String, Object> prefs = new HashMap<String, Object>();
+		 ChromeOptions cOptions = new ChromeOptions();
+		  
+		 prefs.put("profile.default_content_setting_values.cookies", 2);
+		 prefs.put("network.cookie.cookieBehavior", 2);
+		 prefs.put("profile.block_third_party_cookies", true);
+
+		 cOptions.setExperimentalOption("prefs", prefs);
+
+		 return cOptions;
+		 }
+    
+    
 }
