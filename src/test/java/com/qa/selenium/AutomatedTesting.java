@@ -2,18 +2,24 @@ package com.qa.selenium;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 
 
 public class AutomatedTesting {
@@ -24,32 +30,59 @@ public class AutomatedTesting {
 	
     private static WebDriver driver;
     
+    IndexPage website = PageFactory.initElements(driver, IndexPage.class);
+    
     //TODO WEBSITE
     private static String URL = "http://localhost:8080/";
 
     @BeforeAll
     public static void setup() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chrome/chromedriver.exe");
-        driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", 
+        		"src/main/resources/drivers/chrome/chromedriver.exe");
+
+        
+        ChromeOptions config = new ChromeOptions();
+        config.setHeadless(false);
+        
+        
+        driver = new ChromeDriver(config);
 
     }
 
+    @Test
+    public void urlLoads() throws InterruptedException {
+    	
+    	//GIVEN THAT I CAN ACCES MY TO DO WEBSITE
+        driver.get(URL);
+        
+        // THEN I GET MY TITLE
+        
+        //"ToDolist by Mohamud Mussa"
+ 
+        //ASSERTION 
+        
+        assertEquals("ToDolist by Mohamud Mussa", driver.getTitle());
+    }
+    
+    //PRINT PAGE TEST
 //    @Test
-//    public void ToDoListLoads() throws InterruptedException {
+//    public void print() throws InterruptedException {
 //    	
 //    	//GIVEN THAT I CAN ACCES MY TO DO WEBSITE
 //        driver.get(URL);
-    
-    //LOGO TEST
-    
 //        
-// 
-//        //ASSERTION 
+//        website.printButton();
 //        
-//        assertEquals("ToDolist by Mohamud Mussa", driver.getTitle());
-//        Thread.sleep(9000); // do not use
+//        Boolean targ = driver.findElement(By.xpath("/html/body/print-preview-app//print-preview-sidebar//print-preview-button-strip//div/cr-button[1]")).isDisplayed();    
+//        
+////        Boolean resultTrue = targ;
+//        Boolean expected = true;
+//   
+//        
+//        assertEquals(expected, targ);
 //    }
-//    
+    
+    
     
     @Test
     public void createATask() throws InterruptedException {
@@ -57,16 +90,13 @@ public class AutomatedTesting {
     	//GIVEN: That I can access the website
        
     	driver.get(URL);
-        
+    	        
         //WHEN: I click on create task button on my index page 
         
-        targ = driver.findElement(By.xpath("//*[@id=\"main\"]/div[1]/button[1]"));
-        targ.click();
+        website.addTaskButton();
         
-        element.getAttribute("src");
-        
-  
-
+        // THEN I WANT TO CHECK THE INITAL COUNT OF MY TO DO LIST
+        int initalcount = driver.findElements(By.xpath("//*[@id=\"taskID\"]/p")).size();
         
         // THEN: I should get input options
         
@@ -92,14 +122,17 @@ public class AutomatedTesting {
         
         
         //THEN: I should be able to see a new task in my list
-        String result = driver.getTitle();
-    
+        
+        
+        int expectedCount = driver.findElements(By.xpath("//*[@id=\"taskID\"]/p")).size();
+
+        int result = initalcount + 1;
+        
         //ASSERTION 
+		
+        assertEquals(expectedCount, result);
         
-        assertEquals("ToDolist by Mohamud Mussa", result);
-        
-        //change sleep to wait
-        Thread.sleep(9000); // do not use
+
     }
 
 
@@ -107,19 +140,6 @@ public class AutomatedTesting {
     public static void tearDown() {
         driver.close();
     }
-    
-	public static ChromeOptions chromeCfg() {
-		 Map<String, Object> prefs = new HashMap<String, Object>();
-		 ChromeOptions cOptions = new ChromeOptions();
-		  
-		 prefs.put("profile.default_content_setting_values.cookies", 2);
-		 prefs.put("network.cookie.cookieBehavior", 2);
-		 prefs.put("profile.block_third_party_cookies", true);
-
-		 cOptions.setExperimentalOption("prefs", prefs);
-
-		 return cOptions;
-		 }
     
     
 }
