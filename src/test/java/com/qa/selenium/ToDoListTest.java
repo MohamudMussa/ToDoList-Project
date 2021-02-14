@@ -1,11 +1,10 @@
 package com.qa.selenium;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AddList {
+public class ToDoListTest {
 	
 
 
@@ -41,7 +40,7 @@ public class AddList {
 		
 	
 
-	public AddList(WebDriver driver) {
+	public ToDoListTest(WebDriver driver) {
 		super();
 		// TODO Auto-generated constructor stub
 	}	

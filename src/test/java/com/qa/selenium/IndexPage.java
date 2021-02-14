@@ -10,7 +10,6 @@ public class IndexPage {
 	@FindBy(xpath = "//*[@id=\"main\"]/div[1]/button[1]")
 	private WebElement addTask;
 	
-	
 
 	@FindBy(xpath = "//*[@id=\"main\"]/div[1]/button[2]")
 	private WebElement updateTask;
@@ -80,6 +79,7 @@ public class IndexPage {
 	}
 
 	public void deleteTaskButton() {
+		deleteTask.click();
 
 	}
 
