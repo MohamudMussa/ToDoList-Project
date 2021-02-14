@@ -31,6 +31,7 @@ public class AutomatedTesting {
     private static WebDriver driver;
     
     IndexPage website = PageFactory.initElements(driver, IndexPage.class);
+    AddList addList = PageFactory.initElements(driver, AddList.class);
     
     //TODO WEBSITE
     private static String URL = "http://localhost:8080/";
@@ -42,7 +43,7 @@ public class AutomatedTesting {
 
         
         ChromeOptions config = new ChromeOptions();
-        config.setHeadless(false);
+        config.setHeadless(true);
         
         
         driver = new ChromeDriver(config);
@@ -135,6 +136,126 @@ public class AutomatedTesting {
 
     }
 
+    
+    
+    //CREATE A NEW LIST ITEM
+    @Test
+    public void createAList() throws InterruptedException {
+    	
+    	//GIVEN: That I can access the website
+       
+    	driver.get(URL);
+    	        
+        //WHEN: I click on create list button on my index page 
+        
+        website.addListButton();
+        
+        // THEN I WANT TO CHECK THE INITAL COUNT OF MY TO DO LIST
+        
+        int initalListCount = driver.findElements(By.xpath("//*[@id=\"todoID\"]/p")).size();
+        
+        
+        // THEN: I create a LIST using information
+        
+        addList.createList("List Test Name");
+        
+        
+        //THEN: I should be able to see a new List in my list
+        
+        
+        int expectedList = driver.findElements(By.xpath("//*[@id=\"todoID\"]/p")).size();
+        
+        int resultList = initalListCount + 1;
+        
+ 
+        //ASSERTION 
+		
+        assertEquals(expectedList, resultList);
+        
+
+    }
+    
+    
+    //UPDATE A NEW LIST ITEM
+    @Test
+    public void updateLIST() throws InterruptedException {
+    	
+    	//GIVEN: That I can access the website
+    	
+       
+    	driver.get(URL);
+    	        
+        //WHEN: I click on create list button on my index page 
+        
+        website.updateListButton();
+        
+        // THEN I WANT TO CHECK THE INITAL VALUE ITEM LIST NAME AT ID 1 IS "Helping"
+        
+        WebElement targ = driver.findElement(By.xpath("//*[@id=\"ListName\"]/p[1]"));
+        targ.getText();
+        
+        // THEN: I create a LIST using information
+     
+        addList.updateList("1", "Help");
+        
+        String expected = "Help";
+        
+        //THEN: I should be able to see a new up to date List name
+
+        WebElement targtwo = driver.findElement(By.xpath("//*[@id=\"ListName\"]/p[1]"));
+
+        String newValue = targtwo.getText(); //"Work"
+        
+        
+        //ASSERTION
+        assertEquals(expected, newValue);
+               
+
+    }
+
+    
+    //UPDATE A NEW LIST ITEM
+    @Test
+    public void deletList() throws InterruptedException {
+    	
+    	//GIVEN: That I can access the website
+    	
+       
+    	driver.get(URL);
+    	        
+        //WHEN: I click on create list button on my index page 
+        
+        website.deleteListButton();
+        
+        // THEN I WANT TO CHECK THE INITAL VALUE AMOUNT OF LIST ITEMS
+ 
+        int deleteInitalCount = driver.findElements(By.xpath("//*[@id=\"todoID\"]/p")).size();
+
+        
+        // THEN: I create a LIST using information
+     
+        addList.delteList("5");
+        
+        
+        //THEN: I should be able to see a new up to date List name
+        
+        int deleteAfterCount = driver.findElements(By.xpath("//*[@id=\"todoID\"]/p")).size();
+
+
+        int deleteResults = deleteInitalCount - 1;
+
+        
+        //ASSERTION
+        
+        assertEquals(deleteAfterCount, deleteResults);
+
+       
+
+    }
+    
+    
+    
+    
 
     @AfterAll
     public static void tearDown() {
