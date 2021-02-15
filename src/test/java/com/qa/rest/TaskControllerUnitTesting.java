@@ -14,7 +14,7 @@ import com.qa.persistence.dto.TaskDTO;
 import com.qa.services.TaskService;
 
 @SpringBootTest
-public class TaskControllerUnitTesting {
+ class TaskControllerUnitTesting {
 
 	@MockBean
 	private TaskService service;
@@ -29,9 +29,5 @@ public class TaskControllerUnitTesting {
 		return this.mapper.map(model, TaskDTO.class);
 	}
 
-	@Test
-	public void readAll() {
-	
 
-}
 }

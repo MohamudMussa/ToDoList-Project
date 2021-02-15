@@ -26,7 +26,7 @@ import com.relevantcodes.extentreports.LogStatus;
 @Sql(scripts = {"classpath:schema-test.sql",
 				"classpath:data-test.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles(profiles = "test")
-public class AutomatedTesting {
+ class AutomatedTesting {
 
 	private static WebElement targ;
 
@@ -45,7 +45,7 @@ public class AutomatedTesting {
 	private static String URL = "http://localhost:8080/";
 
 	@BeforeAll
-	public static void setup() {
+	 static void setup() {
 		
 		
 		//extent report
@@ -65,14 +65,14 @@ public class AutomatedTesting {
 	}
 	
 	@AfterEach
-	public void endTest() {
+	 void endTest() {
 		//end report after each test
 		report.endTest(test);
 	
 	}
 
 	@Test
-	public void urlLoads() throws InterruptedException {
+	 void urlLoads() throws InterruptedException {
 
 		// GIVEN THAT I CAN ACCES MY TO DO WEBSITE
 		driver.get(URL);
@@ -88,7 +88,7 @@ public class AutomatedTesting {
 
 	//READ TASK
     @Test
-    public void readAllTasks() throws InterruptedException {
+     void readAllTasks() throws InterruptedException {
     	
     	test = report.startTest("READ TASK TEST");
     	
@@ -120,7 +120,7 @@ public class AutomatedTesting {
     
 	//READ LIST
     @Test
-    public void readAllList() throws InterruptedException {
+     void readAllList() throws InterruptedException {
     	
     	test = report.startTest("READ LIST TEST");
     	
@@ -153,7 +153,7 @@ public class AutomatedTesting {
 	
 	//CREATE TASK TEST
 	@Test
-	public void createATask() throws InterruptedException {
+	 void createATask() throws InterruptedException {
 		
 		test = report.startTest("CREATE TASK TEST");
 
@@ -194,7 +194,7 @@ public class AutomatedTesting {
 
 	//UPDATE TASK
 	@Test
-	public void updateTask() throws InterruptedException {
+	 void updateTask() throws InterruptedException {
 		
 		//report name
 		test = report.startTest("UPDATE TASK TEST");
@@ -239,7 +239,7 @@ public class AutomatedTesting {
 	
 	//DELETE A TASK
 	@Test
-	public void deleteTask() throws InterruptedException {
+	 void deleteTask() throws InterruptedException {
 		
 		//report name
 		test = report.startTest("DELETE TASK TEST");
@@ -287,7 +287,7 @@ public class AutomatedTesting {
 	
 	// CREATE A NEW LIST ITEM
 	@Test
-	public void createAList() throws InterruptedException {
+	 void createAList() throws InterruptedException {
 		
 		test = report.startTest("CREATE LIST TEST");
 
@@ -327,7 +327,7 @@ public class AutomatedTesting {
 
 	// UPDATE A NEW LIST ITEM
 	@Test
-	public void updateLIST() throws InterruptedException {
+	 void updateLIST() throws InterruptedException {
 		
 		test = report.startTest("UPDATE LIST TEST");
 
@@ -363,7 +363,7 @@ public class AutomatedTesting {
 
 	// DELETE A NEW LIST ITEM
 	@Test
-	public void deletList() throws InterruptedException {
+	 void deletList() throws InterruptedException {
 		
 		test = report.startTest("DELETE LIST TEST");
 
@@ -406,7 +406,7 @@ public class AutomatedTesting {
 	
 
 	@AfterAll
-	public static void tearDown() {
+	 static void tearDown() {
 		
 		driver.close();
 		

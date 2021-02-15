@@ -28,7 +28,6 @@ public class ToDoDomain {
 
 	public ToDoDomain() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ToDoDomain(Long id, String listName, List<TaskDomain> taskList) {
