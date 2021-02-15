@@ -1,5 +1,8 @@
 package com.qa.rest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.persistence.domain.TaskDomain;
 import com.qa.persistence.domain.ToDoDomain;
-import com.qa.persistence.dto.TaskDTO;
 import com.qa.persistence.dto.ToDoDTO;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -46,6 +47,34 @@ public class ToDoControllerIntegrationTest {
 	// READ ALL todoS
 	@Test
 	public void readAll() throws Exception {
+		
+		ToDoDTO todo1 = new ToDoDTO(1L, "Helping");
+		ToDoDTO todo2 = new ToDoDTO(2L, "Shopping");
+		ToDoDTO todo3 = new ToDoDTO(3L, "Work");
+		ToDoDTO todo4 = new ToDoDTO(4L, "Work");
+		ToDoDTO todo5 = new ToDoDTO(5L, "Shopping");
+		ToDoDTO todo6 = new ToDoDTO(6L,"House Items");
+		
+				
+		
+		List<ToDoDTO> expectedList = new ArrayList<>();
+		expectedList.add(todo1);
+		expectedList.add(todo2);
+		expectedList.add(todo3);
+		expectedList.add(todo4);
+		expectedList.add(todo5);
+		expectedList.add(todo6);
+
+		// Request setup
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
+				"http://localhost:8080/todo/readAll");
+
+		// Expectations setup
+		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedList));
+
+		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
+
 
 	}
 
