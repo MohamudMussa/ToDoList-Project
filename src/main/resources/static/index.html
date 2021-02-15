@@ -1,332 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDolist by Mohamud Mussa</title>
     <!-- Stylesheet here -->
 
-    <link rel = "stylesheet"   type = "text/css" href = "index.css" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 
 </head>
+
 <body>
-<div class="main" data-spy="scroll">
-    
-    <div class="container" id="main">
-        <a href="#"><img id="logo-navbar-middle" src="./resource/logo.png" width="200" alt="Logo Thing main logo"></a>
+    <div class="main" data-spy="scroll">
 
-        <!-- Content here -->
+        <div class="container" id="main">
+            <a href="#"><img id="logo-navbar-middle" src="./resource/logo.png" width="200"
+                    alt="Logo Thing main logo"></a>
 
-        <h1 class="text-center"> Minimalist ToDo</h1>
+            <!-- Content here -->
+
+            <h1 class="text-center"> Minimalist ToDo</h1>
 
 
-        <table class="table table-dark table-hover">
+            <table class="table table-dark table-hover">
 
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">To Do</th>
-            <th scope="col">Category</th>
-            <th scope="col">Rank</th>
-            <th scope="col">Completed</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr> 
-            <td id="taskID"></td>
-            <td id="task"></td>
-            <td id="category"></td> 
-            <td id="rank"></td>
-            <td id="complete"></td>
-          </tr>
-          <tr>
-            <th scope="row"></th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-                     <!-- TASK BUTTONS-->
-                    <div class="myButton"> 
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">To Do</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Rank</th>
+                        <th scope="col">Completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="taskID"></td>
+                        <td id="task"></td>
+                        <td id="category"></td>
+                        <td id="rank"></td>
+                        <td id="complete"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- TASK BUTTONS-->
+            <div class="myButton">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
                     data-target="#createMethod">Create A Task</button>
 
 
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
                     data-target="#updateMethod">Update A Task</button>
 
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                        data-target="#deleteMethod">Delete A Task</button>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                    data-target="#deleteMethod">Delete A Task</button>
 
-                       
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                    onclick="window.print()">Prinr Your List</button>
 
-                </div>
-                <!-- CREATE TASK-->
-                <div class="modal" id="createMethod">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title">Create your ToDo List</h2>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span>&times;</span>
-                                </button>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" onclick="window.print()">Prinr
+                    Your List</button>
+
+            </div>
+            <!-- CREATE TASK-->
+            <div class="modal" id="createMethod">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Create your ToDo List</h2>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <input class="input-group-text" type="text" id="taskinput" placeholder="Enter Task" />
                             </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <input class="input-group-text" type="text" id="taskinput" placeholder="taskinput" />
-                                </div>
 
-                                <div class="row">
-                                    <input class="input-group-text" type="text" id="categoryInput" placeholder="categoryInput" />
-                                </div>
-
-                                <div class="row">
-                                    <input class="input-group-text" type="number" id="rankInput" placeholder="rankInput" />
-                                </div>
-
-                                <div class="row"> 
-                                    <input class="input-group-text" type="text" id="completedInput" placeholder="completedInput" />
-                                </div>
-
-                                <div class="row"> 
-                                    <input class="input-group-text" type="number" id="listValue" placeholder="listValue" />
-                                </div>
+                            <div class="row">
+                                <input class="input-group-text" type="text" id="categoryInput"
+                                    placeholder="Enter Category" />
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="createToDoList();"
-                                    data-dismiss="modal">Create</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+
+                            <div class="row">
+                                <input class="input-group-text" type="number" id="rankInput"
+                                    placeholder="Enter Rank e.g. 5" />
                             </div>
+
+                            <div class="row">
+                                <input class="input-group-text" type="text" id="completedInput"
+                                    placeholder="Completed (true/false)" />
+                            </div>
+
+                            <div class="row">
+                                <input class="input-group-text" type="number" id="listValue"
+                                    placeholder="linked List " />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="createToDoList();"
+                                data-dismiss="modal">Create</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                    <!-- UPDATE TASK-->
-                <div class="modal" id="updateMethod">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title">Create your ToDo List</h2>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span>&times;</span>
-                                </button>
+            <!-- UPDATE TASK-->
+            <div class="modal" id="updateMethod">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Create your ToDo List</h2>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <input class="input-group-text" type="number" id="updateID" placeholder="Update ID" />
                             </div>
-                            <div class="modal-body">
 
-                                <div class="row">
-                                    <input class="input-group-text" type="number" id="updateID" placeholder="updateID" />
-                                </div>
-
-                                <div class="row">
-                                    <input class="input-group-text" type="text" id="updateTask" placeholder="updateTask" />
-                                </div>
-
-                                <div class="row">
-                                    <input class="input-group-text" type="text" id="updateCategory" placeholder="updateCategory" />
-                                </div>
-
-                                <div class="row">
-                                    <input class="input-group-text" type="number" id="updateRank" placeholder="updateRank" />
-                                </div>
-
-                                <div class="row"> 
-                                    <input class="input-group-text" type="text" id="updateCompleted" placeholder="updateCompleted" />
-                                </div>
-
-                                <div class="row"> 
-                                    <input class="input-group-text" type="number" id="updateTodoList" placeholder="updateTodoList" />
-                                </div>
-
-
-
-
+                            <div class="row">
+                                <input class="input-group-text" type="text" id="updateTask"
+                                    placeholder="new Task name" />
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="updateToDoList();"
-                                    data-dismiss="modal">Create</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+
+                            <div class="row">
+                                <input class="input-group-text" type="text" id="updateCategory"
+                                    placeholder="new Category" />
                             </div>
+
+                            <div class="row">
+                                <input class="input-group-text" type="number" id="updateRank" placeholder="new Rank" />
+                            </div>
+
+                            <div class="row">
+                                <input class="input-group-text" type="text" id="updateCompleted"
+                                    placeholder="new Status" />
+                            </div>
+
+                            <div class="row">
+                                <input class="input-group-text" type="number" id="updateTodoList"
+                                    placeholder="new List link" />
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="updateToDoList();"
+                                data-dismiss="modal">Create</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                        <!-- DELETE TASK-->
-                <div class="modal" id="deleteMethod">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title">Delete To Do LIST</h2>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span>&times;</span>
-                                </button>
+            <!-- DELETE TASK-->
+            <div class="modal" id="deleteMethod">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Delete To Do LIST</h2>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <input class="input-group-text" type="number" id="deleteID" placeholder="ID" />
                             </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <input class="input-group-text" type="number" id="deleteID" placeholder="ID" />
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="deleteToDoList();"
-                                    data-dismiss="modal">DELETE</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="deleteToDoList();"
+                                data-dismiss="modal">DELETE</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="border-top my-3"></div>
-                <div class="border-top my-3"></div>
-
-
-
-      
-                <hr class="mt-2 mb-3"/>
-
-                        <h1 class="text-center"> Your Lists</h1>
-                        <p class="text-center"> Your Lists is where we collect all the tasks into a particular list for you</p>
-                            <p class="text-center"> When creating a task, select the ID(list) you'd like to connect that task to </p>
-
-
-                <!-- LIST TABLE-->
-        <table class="table table-dark table-hover">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">List Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr> 
-            <td id="todoID"></td>
-            <td id="ListName"></td>
-          </tr>
-             </tbody>
-      </table>
- 
-                     <!-- MY TO DO LIST BUTTONS-->
-                     <div class="myButton"> 
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                        data-target="#createMethodLIST">Create A LIST</button>
-    
-    
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                        data-target="#updateMethodLIST">Update A LIST</button>
-    
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                            data-target="#deleteMethodLIST">Delete A LIST</button>
-    
-                           
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
-                        onclick="window.print()">Prinr Your LIST</button>
+            <div class="border-top my-3"></div>
+            <div class="border-top my-3"></div>
 
 
 
 
-                 <!-- /.end of container -->
-                    </div>
-    
+            <hr class="mt-2 mb-3" />
 
-                                    <!-- CREATE TASK-->
-                <div class="modal" id="createMethodLIST">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title">Create your List</h2>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span>&times;</span>
-                                </button>
+            <h1 class="text-center"> Your Lists</h1>
+            <p class="text-center"> Your Lists is where we collect all the tasks into a particular list for you</p>
+            <p class="text-center"> When creating a task, select the ID(list) you'd like to connect that task to </p>
+
+
+            <!-- LIST TABLE-->
+            <table class="table table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">List Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="todoID"></td>
+                        <td id="ListName"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- MY TO DO LIST BUTTONS-->
+            <div class="myButton">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                    data-target="#createMethodLIST">Create A LIST</button>
+
+
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                    data-target="#updateMethodLIST">Update A LIST</button>
+
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                    data-target="#deleteMethodLIST">Delete A LIST</button>
+
+
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" onclick="window.print()">Prinr
+                    Your LIST</button>
+
+
+
+
+                <!-- /.end of container -->
+            </div>
+
+
+            <!-- CREATE TASK-->
+            <div class="modal" id="createMethodLIST">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Create your List</h2>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <input class="input-group-text" type="text" id="newListName"
+                                    placeholder="New List Name" />
                             </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <input class="input-group-text" type="text" id="newListName" placeholder="newListName" />
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="createLIST();"
-                                    data-dismiss="modal">Create</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="createLIST();"
+                                data-dismiss="modal">Create</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                    <!-- UPDATE TASK-->
-                <div class="modal" id="updateMethodLIST">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title">Update List</h2>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span>&times;</span>
-                                </button>
+            <!-- UPDATE TASK-->
+            <div class="modal" id="updateMethodLIST">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Update List</h2>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="row">
+                                <input class="input-group-text" type="number" id="updatedIDforList"
+                                    placeholder="List ID update" />
                             </div>
-                            <div class="modal-body">
 
-                                <div class="row">
-                                    <input class="input-group-text" type="number" id="updatedIDforList" placeholder="updatedIDforList" />
-                                </div>
-
-                                <div class="row">
-                                    <input class="input-group-text" type="text" id="updatedListNametxt" placeholder="updatedListNametxt" />
-                                </div>
+                            <div class="row">
+                                <input class="input-group-text" type="text" id="updatedListNametxt"
+                                    placeholder="Updated ListName" />
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="updateMynList();"
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="updateMynList();"
                                 data-dismiss="modal">Update</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                            </div>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                        <!-- DELETE TASK-->
-                <div class="modal" id="deleteMethodLIST">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title">Delete LIST</h2>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <span>&times;</span>
-                                </button>
+            <!-- DELETE TASK-->
+            <div class="modal" id="deleteMethodLIST">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Delete LIST</h2>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <input class="input-group-text" type="number" id="deleteListID" placeholder="ID" />
                             </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <input class="input-group-text" type="number" id="deleteListID" placeholder="ID" />
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" onclick="deleteAlist();"
-                                    data-dismiss="modal">DELETE</button>
-                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" onclick="deleteAlist();"
+                                data-dismiss="modal">DELETE</button>
+                            <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="border-top my-3"></div>
-                <div class="border-top my-3"></div>
-
-
-</div>
+            <div class="border-top my-3"></div>
+            <div class="border-top my-3"></div>
 
 
+        </div>
 
-    <script src="/index.js"></script>
-    <!-- Scripts here -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-        crossorigin="anonymous"></script>
+
+
+        <script src="/index.js"></script>
+        <!-- Scripts here -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
 </body>
+
 </html>
