@@ -1,7 +1,6 @@
 package com.qa.selenium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -13,12 +12,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-
+@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
+@Sql(scripts = {"classpath:schema-test.sql",
+				"classpath:data-test.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@ActiveProfiles(profiles = "test")
 public class AutomatedTesting {
 
 	private static WebElement targ;
@@ -334,17 +341,15 @@ public class AutomatedTesting {
 		
 		// THEN: I create a LIST using information
 
-		ToDoListTest.updateList("1", "UPDATE TEST");
+		ToDoListTest.updateList("1", "Helping");
 
-		String expected = "UPDATE TEST";
+		String expected = "Helping";
 
 		// THEN: I should be able to see a new up to date List name
 
-		WebElement targtwo = driver.findElement(By.xpath("//*[@id=\"ListName\"]/p[1]"));
-		
-		String newValue = targtwo.getText(); // "UPDATE TEST""
-		
-		if(expected.equals(newValue)) {
+		String updateValue = driver.findElement(By.xpath("//*[@id=\"ListName\"]/p")).getText();
+			
+		if(expected.equals(updateValue)) {
 			test.log(LogStatus.PASS, "User was deleted");
 		} else {
 			test.log(LogStatus.FAIL, "user was not Updated");
@@ -352,7 +357,7 @@ public class AutomatedTesting {
 		
 
 		// ASSERTION
-		assertEquals(expected, newValue);
+		assertEquals(expected, updateValue);
 
 	}
 
