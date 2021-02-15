@@ -53,11 +53,12 @@ public class ToDoListTest {
 		
 	}
 	
-	public void updateList(String ID,String newListName) {
+	public void updateList(String ID, String newListName) {
 		
 		
 		this.updateID.sendKeys(ID);
 		this.updateListName.sendKeys(newListName);
+		
 		this.submitListUpdate.click();
 		
 	}

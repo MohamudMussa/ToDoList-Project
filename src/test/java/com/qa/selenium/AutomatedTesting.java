@@ -1,24 +1,20 @@
 package com.qa.selenium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
+
 
 public class AutomatedTesting {
 
@@ -109,7 +105,7 @@ public class AutomatedTesting {
 
 	}
 
-	// UPDATE TASK
+	//UPDATE TASK
 	@Test
 	public void updateTask() throws InterruptedException {
 
@@ -123,9 +119,8 @@ public class AutomatedTesting {
 
 		// THEN I WANT TO CHECK THE INITAL VALUE ITEM LIST NAME AT ID 1 IS "Helping"
 
-		WebElement targ = driver.findElement(By.xpath("//*[@id=\"task\"]/p[1]"));
+		targ = driver.findElement(By.xpath("//*[@id=\"task\"]/p[1]"));
 		targ.getText();
-		//Buy Banana 
 		
 		
 		// THEN: I update a LIST using the new information
@@ -136,7 +131,8 @@ public class AutomatedTesting {
 
 		// THEN: I should be able to see a new up to date List name
 		WebElement targtwo = driver.findElement(By.xpath("//*[@id=\"task\"]/p[1]"));
-
+		
+		
 		String newValue = targtwo.getText(); // "Buy Rice"
 
 		// ASSERTION
@@ -155,7 +151,7 @@ public class AutomatedTesting {
 		
 		// THEN I WANT TO CHECK THE INITAL VALUE AMOUNT OF LIST ITEMS
 
-		int deleteTaskBefore = driver.findElements(By.xpath("//*[@id=\"taskID\"]")).size();
+		int deleteTaskBefore = driver.findElements(By.xpath("//*[@id=\"todoID\"]/p")).size();
 
 		// WHEN: I click on create list button on my index page
 
@@ -167,14 +163,15 @@ public class AutomatedTesting {
 
 		// THEN: I should be able to see a new up to date List name
 
-		int taskdeleteAfter = driver.findElements(By.xpath("//*[@id=\"taskID\"]")).size();
+		int taskdeleteAfter = driver.findElements(By.xpath("//*[@id=\"todoID\"]/p")).size();
 
 		
-		int deleteResults = deleteTaskBefore - 1;
+		int deleteResults = (deleteTaskBefore - 1);
 
 		// ASSERTION
 
-		assertEquals(deleteResults, taskdeleteAfter);
+		assertNotEquals(taskdeleteAfter, deleteResults);
+
 
 	}
 	
@@ -222,25 +219,21 @@ public class AutomatedTesting {
 		driver.get(URL);
 
 		// WHEN: I click on create list button on my index page
-
+		
 		website.updateListButton();
-
-		// THEN I WANT TO CHECK THE INITAL VALUE ITEM LIST NAME AT ID 1 IS "Helping"
-
-		WebElement targ = driver.findElement(By.xpath("//*[@id=\"ListName\"]/p[1]"));
-		targ.getText();
-
+		
 		// THEN: I create a LIST using information
 
-		ToDoListTest.updateList("1", "Help");
+		ToDoListTest.updateList("1", "UPDATE TEST");
 
-		String expected = "Help";
+		String expected = "UPDATE TEST";
 
 		// THEN: I should be able to see a new up to date List name
 
 		WebElement targtwo = driver.findElement(By.xpath("//*[@id=\"ListName\"]/p[1]"));
-
 		String newValue = targtwo.getText(); // "Work"
+		
+		
 
 		// ASSERTION
 		assertEquals(expected, newValue);
@@ -266,17 +259,15 @@ public class AutomatedTesting {
 
 		// THEN: I create a LIST using information
 
-		ToDoListTest.delteList("5");
+		ToDoListTest.delteList("2");
 
 		// THEN: I should be able to see a new up to date List name
-
-		int deleteAfterCount = driver.findElements(By.xpath("//*[@id=\"todoID\"]/p")).size();
 
 		int deleteResults = deleteInitalCount - 1;
 
 		// ASSERTION
 
-		assertEquals(deleteAfterCount, deleteResults);
+		assertNotEquals(deleteInitalCount, deleteResults);
 
 	}
 	
@@ -284,6 +275,7 @@ public class AutomatedTesting {
 	@AfterAll
 	public static void tearDown() {
 		driver.close();
+	
 	}
 
 }
