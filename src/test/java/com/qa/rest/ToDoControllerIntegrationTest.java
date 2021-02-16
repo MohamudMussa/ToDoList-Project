@@ -67,7 +67,7 @@ public class ToDoControllerIntegrationTest {
 
 		// Request setup
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
-				"http://localhost:8080/todo/readAll");
+				"/todo/readAll");
 
 		// Expectations setup
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
@@ -87,7 +87,7 @@ public class ToDoControllerIntegrationTest {
 
         // this sets up the request
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
-                "http://localhost:8080/todo/read/" + 1L);
+                "/todo/read/" + 1L);
 
         // CHECK STATUS THAT YOU GET
         ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
@@ -111,7 +111,7 @@ public class ToDoControllerIntegrationTest {
 
         // this sets up the request
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-                .request(HttpMethod.POST, "http://localhost:8080/todo/create").contentType(MediaType.APPLICATION_JSON)
+                .request(HttpMethod.POST, "/todo/create").contentType(MediaType.APPLICATION_JSON)
                 .content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
 
         // CHECK STATUS THAT YOU GET
@@ -133,7 +133,7 @@ public class ToDoControllerIntegrationTest {
 		
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-				.request(HttpMethod.PUT, "http://localhost:8080/todo/update/" + 1L)
+				.request(HttpMethod.PUT, "/todo/update/" + 1L)
 				.contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(test_task)).accept(MediaType.APPLICATION_JSON);
 
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isAccepted();
@@ -151,7 +151,7 @@ public class ToDoControllerIntegrationTest {
         // this sets up the request
         // we are going to delete ID 2
         MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE,
-                "http://localhost:8080/todo/delete/" + 2);
+                "/todo/delete/" + 2);
 
         // CHECK STATUS THAT YOU GET
         ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
@@ -165,7 +165,7 @@ public class ToDoControllerIntegrationTest {
 	public void deleteInternalError() throws Exception {
 
             MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE,
-                    "http://localhost:8080/todo/delete/" + 10);
+                    "/todo/delete/" + 10);
 
             ResultMatcher nonMatch = MockMvcResultMatchers.status().isInternalServerError();
             this.mock.perform(mockRequest).andExpect(nonMatch);
