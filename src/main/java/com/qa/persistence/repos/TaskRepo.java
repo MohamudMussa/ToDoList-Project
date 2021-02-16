@@ -10,9 +10,5 @@ import com.qa.persistence.domain.TaskDomain;
 public interface TaskRepo extends JpaRepository<TaskDomain, Long>{
 	
 	//CRUD -> H2 DATABASE
-	
-	// .save
-	
-	
-	//.
+
 }

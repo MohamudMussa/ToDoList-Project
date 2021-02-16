@@ -18,7 +18,7 @@ import com.qa.persistence.domain.TaskDomain;
 import com.qa.persistence.dto.TaskDTO;
 import com.qa.services.TaskService;
 
-// will be http://localhost:8080/task/create
+
 
 @RestController
 @RequestMapping("/task")
@@ -26,11 +26,8 @@ public class TaskController {
 
 	private TaskService service;
 
-	// private TASKServices services;
 
-	// this tells Spring, I need a service, go look for it
 
-	// allows spring to inject the constructor when its needed
 	@Autowired
 	public TaskController(TaskService service) {
 		super();

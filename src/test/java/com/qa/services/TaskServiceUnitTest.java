@@ -29,7 +29,7 @@ public class TaskServiceUnitTest {
 	@Autowired // @injectMocks
 	private TaskService service;
 	
-//	CRUD
+
 	
 	
 	//Create
@@ -91,13 +91,9 @@ public class TaskServiceUnitTest {
 	public void readAll() {
 		
 		TaskDomain testTask = new TaskDomain(1L, "Help Mum", "Helping", 5, false, null);
-//		TaskDomain testTaskTwo = new TaskDomain(1L, "Help Mum", "Helping", 5, false, null);
-//		TaskDomain testTaskThree = new TaskDomain(1L, "Help Mum", "Helping", 5, false, null);
 		List<TaskDomain> testList =  new ArrayList<>();
 		testList.add(testTask);
-//		testList.add(testTaskTwo);
-//		testList.add(testTaskThree);
-		
+
 		TaskDTO testDTO = new TaskDTO(1L, "Buy Banana", "Shopping", 2, false);
 		List<TaskDTO> testDTOList = new ArrayList<>();
 		testDTOList.add(testDTO);

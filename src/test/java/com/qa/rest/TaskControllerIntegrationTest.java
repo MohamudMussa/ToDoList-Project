@@ -67,7 +67,7 @@ public class TaskControllerIntegrationTest {
 
 		// Request setup
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
-				"http://localhost:8080/task/readAll");
+				"/task/readAll");
 
 		// Expectations setup
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
@@ -86,7 +86,7 @@ public class TaskControllerIntegrationTest {
 
 		// this sets up the request
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
-				"http://localhost:8080/task/read/" + 1L);
+				"/task/read/" + 1L);
 
 		// CHECK STATUS THAT YOU GET
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
@@ -110,7 +110,7 @@ public class TaskControllerIntegrationTest {
 
 		// this sets up the request
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-				.request(HttpMethod.POST, "http://localhost:8080/task/create").contentType(MediaType.APPLICATION_JSON)
+				.request(HttpMethod.POST, "/task/create").contentType(MediaType.APPLICATION_JSON)
 				.content(jsonifier.writeValueAsString(contentBody))
 				.accept(MediaType.APPLICATION_JSON);
 
@@ -136,7 +136,7 @@ public class TaskControllerIntegrationTest {
 		
 		//THE request
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-				.request(HttpMethod.PUT, "http://localhost:8080/task/update/" + 1L)
+				.request(HttpMethod.PUT, "/task/update/" + 1L)
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(jsonifier.writeValueAsString(contentBody))
 				.accept(MediaType.APPLICATION_JSON);
@@ -162,7 +162,7 @@ public class TaskControllerIntegrationTest {
 		// we are going to delete ID 2
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
 				.request(HttpMethod.DELETE,
-				"http://localhost:8080/task/delete/" + 2);
+				"/task/delete/" + 2);
 
 		// CHECK STATUS THAT YOU GET
 		//the delete returns badrequest 
@@ -180,7 +180,7 @@ public class TaskControllerIntegrationTest {
 	public void deleteInternalError() throws Exception {
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE,
-				"http://localhost:8080/task/delete/" + 10);
+				"/task/delete/" + 10);
 
 		ResultMatcher internalerror = MockMvcResultMatchers.status().isInternalServerError();
 		this.mock.perform(mockRequest)

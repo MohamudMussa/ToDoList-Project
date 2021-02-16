@@ -29,7 +29,7 @@ public class ToDoServiceUnitTest {
 	@Autowired // @injectMocks
 	private ToDoService service;
 	
-//	CRUD
+
 	
 	
 	//Create
@@ -90,12 +90,9 @@ public class ToDoServiceUnitTest {
 	public void readAll() {
 		
 		ToDoDomain testTask = new ToDoDomain(1L, "Help Mum");
-//		ToDoDomain testTaskTwo = new ToDoDomain(1L, "Help Mum", "Helping", 5, false, null);
-//		ToDoDomain testTaskThree = new ToDoDomain(1L, "Help Mum", "Helping", 5, false, null);
 		List<ToDoDomain> testList =  new ArrayList<>();
 		testList.add(testTask);
-//		testList.add(testTaskTwo);
-//		testList.add(testTaskThree);
+
 		
 		ToDoDTO testDTO = new ToDoDTO(1L, "Buy Banana");
 		List<ToDoDTO> testDTOList = new ArrayList<>();
