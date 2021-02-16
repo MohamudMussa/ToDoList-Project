@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>To Do List</title>
+</head>
+
+<body>
+
+    <nav>
+        <!-- menu -------------------->
+
+        <nav class="container">
+            <nav class="row">
+                <nav class="col-md">
+                    <h1 class="text-center display-1">To Do List</h1>
+                </nav>
+            </nav>
+            <nav class="row">
+                <nav class="col-md">
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#createMethod">
+                        Create
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#updateMethod">
+                        Update
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#deleteMethod">
+                        Delete
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal"
+                        data-target="#updateMethod">
+                        Update
+                    </button>
+
+                </nav>
+
+
+                <!-- create todo -------------------->
+
+                <div class="modal" id="createMethod">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Create your ToDo List</h2>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <input class="input-group-text" type="text" id="name"
+                                        placeholder="Enter ToDo List Name" />
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" onclick="createToDoList();"
+                                    data-dismiss="modal">Create</button>
+                                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- update -------------------->
+                <div class="modal" id="updateMethod">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title">Update your ToDo List</h2>
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <span>&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <input class="input-group-text" type="number" id="id"
+                                        placeholder="Please enter the ID you'd like to update" />
+                                </div>
+                                <div class="row">
+                                    <input class="input-group-text" type="text" id="name"
+                                        placeholder="Enter your new ToDo List Name" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" onclick="updateToDoList();"
+                                        data-dismiss="modal">Update</button>
+                                    <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!-- DELETE -------------------->
+
+                    <div class="modal" id="deleteMethod">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Delete To Do LIST</h2>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span>&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <input class="input-group-text" type="number" id="id"
+                                            placeholder="ID"" />
+                                    </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" onclick="deleteToDoList();"
+                                            data-dismiss="modal">DELETE</button>
+                                        <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                        <!-- Optional JavaScript -->
+                        <script src="./index.js"></script>
+
+                        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                            crossorigin="anonymous"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                            crossorigin="anonymous"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                            crossorigin="anonymous"></script>
+</body>
+
+</html>

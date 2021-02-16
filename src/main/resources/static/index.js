@@ -131,7 +131,6 @@ const createToDoList = () => {
     const completed = stateCompleted.value;
     const listvalue = stateListValue.value;
 
-
 	let createdata = {
 		name: taskname,
         category:category,

@@ -1,0 +1,12 @@
+com\qa\selenium\IndexPage.class
+com\qa\persistence\domain\TaskDomainTest.class
+com\qa\selenium\AutomatedTesting.class
+com\qa\selenium\ToDoTaskTest.class
+com\qa\services\TaskServiceUnitTest.class
+com\qa\services\ToDoServiceUnitTest.class
+com\qa\rest\TaskControllerUnitTesting.class
+com\qa\selenium\ToDoListTest.class
+com\qa\ToDoListProjectApplicationTests.class
+com\qa\persistence\domain\ToDoDomainTest.class
+com\qa\rest\ToDoControllerIntegrationTest.class
+com\qa\rest\TaskControllerIntegrationTest.class

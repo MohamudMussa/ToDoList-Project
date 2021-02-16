@@ -32,7 +32,7 @@ public class TaskDomain {
 
 	public TaskDomain() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public TaskDomain(Long id, String name, String category, Integer rank, Boolean completed, ToDoDomain myToDo) {
