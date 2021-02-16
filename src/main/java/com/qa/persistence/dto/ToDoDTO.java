@@ -10,18 +10,17 @@ public class ToDoDTO {
 	
 	private Long id;
 	private String listName;
-//	private List<TaskDTO> taskList;
+
 	
 	public ToDoDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ToDoDTO(Long id, String listName, List<TaskDTO> taskList) {
 		super();
 		this.id = id;
 		this.listName = listName;
-//		this.taskList = taskList;
+
 	}
 
 	
@@ -47,15 +46,6 @@ public class ToDoDTO {
 	public void setlistName(String listName) {
 		this.listName = listName;
 	}
-
-//	public List<TaskDTO> getTaskList() {
-//		return taskList;
-//	}
-//
-//	public void setTaskList(List<TaskDTO> taskList) {
-//		this.taskList = taskList;
-//	}
-
 
 
 

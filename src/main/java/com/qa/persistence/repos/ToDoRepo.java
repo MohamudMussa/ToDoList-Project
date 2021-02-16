@@ -10,8 +10,4 @@ public interface ToDoRepo extends JpaRepository<ToDoDomain, Long>{
 	
 	//CRUD -> H2 DATABASE
 	
-	// .save
-	
-	
-	//.
 }

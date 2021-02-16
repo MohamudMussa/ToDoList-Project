@@ -47,12 +47,12 @@ public class ToDoService {
 		return mapToDTO(this.repo.findById(id).orElseThrow());
 	}
 
-	// POST
+	//-------- POST --------
 	public ToDoDTO create(ToDoDomain model) {
 		return this.mapToDTO(this.repo.save(model));
 	}
 
-	// PUT - UPDATE
+	// -------- PUT/UPDATE --------
 
 	public ToDoDTO update(Long id, ToDoDomain newDetails) {
 		this.repo.findById(id).orElseThrow();

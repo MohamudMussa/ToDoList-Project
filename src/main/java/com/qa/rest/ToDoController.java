@@ -19,7 +19,7 @@ import com.qa.persistence.domain.ToDoDomain;
 import com.qa.persistence.dto.ToDoDTO;
 import com.qa.services.ToDoService;
 
-// will be http://localhost:8080/item/create
+
 
 @RestController
 @RequestMapping("/todo")
@@ -27,11 +27,7 @@ public class ToDoController {
 
 	private ToDoService service;
 
-	// private ItemServices services;
 
-	// this tells Spring, I need a service, go look for it
-
-	// allows spring to inject the constructor when its needed
 	@Autowired
 	public ToDoController(ToDoService service) {
 		super();
