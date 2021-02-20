@@ -6,7 +6,7 @@ Coverage: 94%
 This Projected is a full-stack web application which allows users to Create, Update and Delete their Tasks. The project was created with the three-tier architecture in mind in order to prevent coupling. The frontend of the website was coded in JavaScript, HTML & CSS, Using Visual Studio Code as an IDE. The backend was coded using Spring (Java) alongside with SQL for the database layer. An API was developed using Spring in order to communicate between the frontend and the backend components. This project is fully tested with Unit, Automated and Integration testing. Agile methodology was used throughout this project alongside Kanban boards to ensure all the criteria were met and finished on schedule. 
 
 
-![ToDoList]()
+![ToDoList](https://github.com/MohamudMussa/ToDoList-Project/blob/main/Documentation/MacBook-Air-Mockup-1%20copy.jpg)
 
 
 ## Table of contents
